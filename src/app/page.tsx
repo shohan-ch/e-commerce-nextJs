@@ -1,5 +1,12 @@
+import HomeSlider from "@/components/Home/HomeSlider";
 import Image from "next/image";
 
 export default function Home() {
-  return <h3>Home page</h3>;
+  return (
+    <>
+      <div>
+        <HomeSlider />
+      </div>
+    </>
+  );
 }

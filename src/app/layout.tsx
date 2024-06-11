@@ -40,7 +40,7 @@ export default function RootLayout({
             </button>
           </div>
         </nav>
-        {children}
+        <main className="px-10">{children}</main>
       </body>
     </html>
   );

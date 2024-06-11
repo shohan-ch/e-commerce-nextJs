@@ -1,0 +1,30 @@
+[
+{
+  "image": "https://borobazar.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fbundle%2F1.png&w=256&q=75",
+  "title": "Spring cleaning for home appliance",
+  "subTitle": "Get your clean on supplies",
+  "link": "#",
+  "bgColor": "#ffeed6"
+},
+{
+  "image": "https://borobazar.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fbundle%2F2.png&w=256&q=75",
+  "title": "Spring cleaning for home appliance",
+  "subTitle": "Spring cleaning",
+  "link": "#",
+  "bgColor": "#D9ECD2"
+},
+{
+  "image": "https://borobazar.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fbundle%2F1.png&w=256&q=75",
+  "title": "Spring cleaning for home appliance",
+  "subTitle": "Spring cleaning",
+  "link": "#",
+  "bgColor": "#DBE5EF"
+},
+{
+  "image": "https://borobazar.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fbundle%2F3.png&w=256&q=75",
+  "title": "Spring cleaning for home appliance",
+  "subTitle": "Spring cleaning",
+  "link": "#",
+  "bgColor": "#EFD8D4"
+}
+]
