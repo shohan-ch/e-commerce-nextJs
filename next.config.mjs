@@ -4,7 +4,7 @@ const nextConfig = {
     instrumentationHook: true,
   },
   images: {
-    domains: ["borobazar.vercel.app", "localhost"],
+    domains: ["borobazar.vercel.app", "localhost", "chaldn.com"],
   },
 };
 

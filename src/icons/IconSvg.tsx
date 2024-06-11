@@ -1,5 +1,30 @@
 import React from "react";
 const icons: any = {
+  plus: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={28}
+      height={28}
+      color={"#FFFFFF"}
+      fill={"none"}
+    >
+      <path
+        d="M12 4V20"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4 12H20"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
   prev: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
