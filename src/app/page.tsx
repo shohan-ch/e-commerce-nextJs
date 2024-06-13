@@ -7,17 +7,22 @@ export default function Home() {
   return (
     <>
       <HomeSlider />
+      <div className="flex my-5 gap-x-9 flex-wrap">
+        <ProductCategories />
 
-      <div className="flex justify-between my-5">
-        <div className="w-[20%] ">
-          {/* <h4 className="text-center mb-4 font-bold text-xl">Categories</h4> */}
+        <div className="w-[100%]">
+          <HomeProducts />
+        </div>
+        {/* <div className="w-[20%]">
           <ProductCategories />
         </div>
 
         <div className="w-[78%]">
           <HomeProducts />
-        </div>
+        </div> */}
       </div>
+
+      <HomeSlider />
     </>
   );
 }
