@@ -1,0 +1,72 @@
+[
+    {
+        "name":"Vegetable",
+         "_id":"1",
+         "image":"https://borobazar.vercel.app/assets/images/category/icon/fresh-vegetables.svg",
+         "subCategory":[
+            {
+                "name":"Beets",
+                "_id":"10"
+            },
+            {
+                "name":"Cavage",
+                "_id":"11"
+            }
+        ]
+    },
+    {
+        "name":"Foods",
+         "_id":"2",
+          "image":"https://borobazar.vercel.app/assets/images/category/icon/diet-foods.svg",
+         "subCategory":[
+            {
+                "name":"Fruits",
+                "_id":"12"
+            },
+            {
+                "name":"Fast food",
+                "_id":"13"
+            }
+        ]
+    },
+    {
+        "name":"Drinks",
+         "_id":"3",
+         "image":"https://borobazar.vercel.app/assets/images/category/icon/fast-food.svg",
+         "subCategory":[
+            {
+                "name":"Juice",
+                "_id":"14"
+            },
+            {
+                "name":"Water",
+                "_id":"15"
+            }
+        ]
+    },
+
+    {
+        "name":"Mango",
+         "_id":"4",
+         "image":"https://borobazar.vercel.app/assets/images/category/icon/fresh-vegetables.svg"
+       
+    },
+
+     {
+        "name":"Education",
+         "_id":"6",
+         "image":"https://borobazar.vercel.app/assets/images/category/icon/fast-food.svg",
+         "subCategory":[
+            {
+                "name":"Pen",
+                "_id":"20"
+            },
+            {
+                "name":"papper",
+                "_id":"21"
+            }
+        ]
+    }
+
+
+]
