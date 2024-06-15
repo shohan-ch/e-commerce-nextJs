@@ -7,12 +7,13 @@ export default function Home() {
   return (
     <>
       <HomeSlider />
-      <div className="flex my-5 gap-x-9 flex-wrap">
+      <div className="flex my-5 gap-x-5 flex-wrap ">
         <ProductCategories />
 
-        <div className="w-[100%]">
+        <div className=" max-w-[76%] mx-auto">
           <HomeProducts />
         </div>
+
         {/* <div className="w-[20%]">
           <ProductCategories />
         </div>

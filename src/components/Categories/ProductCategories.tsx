@@ -37,11 +37,11 @@ const ProductCategories = (props: Props) => {
 
   return (
     <>
-      {data.length > 8 ? (
+      {data.length < 8 ? (
         <CategoryCenterLayout data={data} handleValue={handleGetValue} />
       ) : (
         <>
-          <div className="border rounded-lg h-auto w-[20%]">
+          <div className="border rounded-lg h-auto w-[22%]">
             <ul>
               {data &&
                 data.map((category, index) => (
