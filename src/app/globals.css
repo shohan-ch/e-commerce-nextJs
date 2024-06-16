@@ -24,4 +24,30 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .scrollHide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollHide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
 }
+
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+ 
+}
+
+/* .scrollHide{
+
+} */
+
+
+
