@@ -10,10 +10,30 @@ type Props = {
 
 const ProductSlider = (props: Props) => {
   const [isButtonVisible, setIsButtonVisible] = useState<Boolean>(false);
+  const [screenSize, setScreenSize] = useState<any>(window.innerWidth);
   const scrollRef = useRef<any>(null);
   const { title } = props;
-  const handleScroll = (scrollOffset: number) => () => {
-    scrollRef.current.scrollLeft += scrollOffset;
+
+  function handleResize() {
+    setScreenSize(window.innerWidth);
+  }
+  const handleScroll = (scrollType: string) => () => {
+    let offset: number;
+    window.addEventListener("resize", handleResize);
+    console.log(screenSize);
+    if (screenSize >= 1024) {
+      offset = 1700;
+    } else if (screenSize >= 800) {
+      offset = 790;
+    } else {
+      offset = 500;
+    }
+    if (scrollType == "increment") {
+      scrollRef.current.scrollLeft += offset;
+    } else {
+      scrollRef.current.scrollLeft -= offset;
+    }
+    // scrollRef.current.scrollLeft += scrollOffset;
   };
 
   const handleScrollToggle = () => {
@@ -25,17 +45,17 @@ const ProductSlider = (props: Props) => {
     <div
       onMouseLeave={handleScrollToggle}
       onMouseEnter={handleScrollToggle}
-      className="border shadow-sm p-4 relative mb-10  hover:cursor-pointer"
+      className="border shadow-sm p-4 relative hover:cursor-pointer"
     >
-      <h2 className="font-bold text-lg mb-3">{title}</h2>
+      <h2 className="font-bold text-2xl mb-5 mt-3">{title}</h2>
       <div
         ref={scrollRef}
-        className="scrollHide flex justify-evenly relative overflow-x-auto scroll-smooth"
+        className="scrollHide border border-red-700 flex justify-evenly relative overflow-x-auto scroll-smooth"
       >
         {data &&
           data.slice(0, 17).map((product, index) => (
             <div>
-              <div className="flex items-center justify-center lg:w-[180px] w-[90px]">
+              <div className="flex items-center justify-center lg:w-[180px] xl:w-[270px] w-[110px] md:w-[140px] ">
                 <Image
                   src={product.coverImage}
                   alt={product.title}
@@ -50,8 +70,8 @@ const ProductSlider = (props: Props) => {
       <div
         className={`${
           !isButtonVisible ? "hidden" : ""
-        } cursor-pointer absolute top-[50%] hover:border-primary transition-colors duration-300 -left-4 border shadow-md transform -translate-y-1/2  bg-white size-10 rounded-full`}
-        onClick={handleScroll(-1000)}
+        } cursor-pointer absolute top-[62%] hover:border-primary transition-colors duration-300 -left-4 border shadow-md transform -translate-y-1/2  bg-white size-10 rounded-full`}
+        onClick={handleScroll("decrement")}
       >
         <div className="h-full flex justify-center items-center ">
           <IconSvg name="prev" />
@@ -61,8 +81,8 @@ const ProductSlider = (props: Props) => {
       <div
         className={`${
           !isButtonVisible ? "hidden" : ""
-        } cursor-pointer absolute -right-4 border hover:border-primary transition-colors duration-300 shadow-md top-[50%] transform -translate-y-1/2 bg-white size-10 rounded-full`}
-        onClick={handleScroll(1000)}
+        } cursor-pointer absolute top-[62%]  -right-4 border hover:border-primary transition-colors duration-300 shadow-md transform -translate-y-1/2 bg-white size-10 rounded-full`}
+        onClick={handleScroll("increment")}
       >
         <div className="h-full flex justify-center items-center">
           <IconSvg name="next" />
