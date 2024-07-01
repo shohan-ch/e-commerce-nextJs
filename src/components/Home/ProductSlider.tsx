@@ -45,12 +45,12 @@ const ProductSlider = (props: Props) => {
     <div
       onMouseLeave={handleScrollToggle}
       onMouseEnter={handleScrollToggle}
-      className="border shadow-sm p-4 relative hover:cursor-pointer"
+      className="border shadow-sm p-4 relative hover:cursor-pointer my-10"
     >
       <h2 className="font-bold text-2xl mb-5 mt-3">{title}</h2>
       <div
         ref={scrollRef}
-        className="scrollHide border border-red-700 flex justify-evenly relative overflow-x-auto scroll-smooth"
+        className="scrollHide md:h-[16vh] h-[13vh] flex justify-evenly overflow-x-auto scroll-smooth"
       >
         {data &&
           data.slice(0, 17).map((product, index) => (
