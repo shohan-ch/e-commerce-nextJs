@@ -1,7 +1,6 @@
 import ProductCategories from "@/components/Categories/ProductCategories";
 import HomeProducts from "@/components/Home/HomeProducts";
 import HomeSlider from "@/components/Home/HomeSlider";
-import ProductSlider from "@/components/Home/ProductSlider";
 import BaseItemsSlider from "@/utils/Slider/BaseItemsSlider";
 import data from "../data/products.json";
 
