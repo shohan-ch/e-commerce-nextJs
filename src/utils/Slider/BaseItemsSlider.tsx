@@ -1,18 +1,19 @@
 "use client";
 import React, { useRef, useState } from "react";
-import data from "../../data/products.json";
 import Image from "next/image";
 import IconSvg from "@/icons/IconSvg";
+import style from "./BaseItemsSlider.module.css";
 
 type Props = {
-  title?: string;
+  data: any[];
+  title: string;
 };
 
-const ProductSlider = (props: Props) => {
+const BaseItemsSlider = (props: Props) => {
+  const { title, data } = props;
   const [isButtonVisible, setIsButtonVisible] = useState<Boolean>(false);
   const [screenSize, setScreenSize] = useState<any>(window.innerWidth);
   const scrollRef = useRef<any>(null);
-  const { title } = props;
 
   function handleResize() {
     setScreenSize(window.innerWidth);
@@ -20,7 +21,6 @@ const ProductSlider = (props: Props) => {
   const handleScroll = (scrollType: string) => () => {
     let offset: number;
     window.addEventListener("resize", handleResize);
-    console.log(screenSize);
     if (screenSize >= 1024) {
       offset = 1700;
     } else if (screenSize >= 800) {
@@ -37,7 +37,7 @@ const ProductSlider = (props: Props) => {
   };
 
   const handleScrollToggle = () => {
-    scrollRef.current.classList.toggle("scrollHide");
+    scrollRef.current.classList.toggle(style.scrollHide);
     setIsButtonVisible(!isButtonVisible);
   };
 
@@ -45,12 +45,12 @@ const ProductSlider = (props: Props) => {
     <div
       onMouseLeave={handleScrollToggle}
       onMouseEnter={handleScrollToggle}
-      className="shadow-sm border rounded-md p-4 relative hover:cursor-pointer my-8"
+      className={`shadow-sm border rounded-md p-4 relative hover:cursor-pointer my-8`}
     >
       <h2 className="font-bold text-2xl mt-3">{title}</h2>
       <div
         ref={scrollRef}
-        className="scrollHide md:h-[16vh] h-[13vh] flex justify-evenly overflow-x-auto scroll-smooth"
+        className={`${style.scrollHide} md:h-[16vh] h-[13vh] flex justify-evenly overflow-x-auto scroll-smooth`}
       >
         {data &&
           data.slice(0, 17).map((product, index) => (
@@ -92,4 +92,4 @@ const ProductSlider = (props: Props) => {
   );
 };
 
-export default ProductSlider;
+export default BaseItemsSlider;

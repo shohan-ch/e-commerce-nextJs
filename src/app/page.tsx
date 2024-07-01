@@ -2,6 +2,9 @@ import ProductCategories from "@/components/Categories/ProductCategories";
 import HomeProducts from "@/components/Home/HomeProducts";
 import HomeSlider from "@/components/Home/HomeSlider";
 import ProductSlider from "@/components/Home/ProductSlider";
+import BaseItemsSlider from "@/utils/Slider/BaseItemsSlider";
+import data from "../data/products.json";
+
 import Image from "next/image";
 
 export default function Home() {
@@ -15,7 +18,8 @@ export default function Home() {
         </div>
       </div>
 
-      <ProductSlider title="Popular product of our store" />
+      <BaseItemsSlider title="Popular product of our store" data={data} />
+      <BaseItemsSlider title="products are viewed 123" data={data} />
 
       {/* <HomeSlider /> */}
     </>

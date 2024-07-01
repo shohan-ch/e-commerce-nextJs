@@ -24,23 +24,6 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-
-  .scrollHide::-webkit-scrollbar {
-    overflow: hidden;
-    transition: all;
-    transition: overflow 1s ease;
-  }
-
-  .scrollHide {
-    transition: all;
-    transition: overflow 1s ease;
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
-  }
-
-
 }
 
 * {
