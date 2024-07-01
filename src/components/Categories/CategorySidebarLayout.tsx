@@ -22,7 +22,7 @@ const CategorySidebarLayout = (props: Props) => {
   };
   return (
     <>
-      <div className="border rounded-lg h-auto w-[22%]">
+      <div className="border rounded-lg h-auto w-[21%]">
         <ul>
           {data &&
             data.map((category: any, index: number) => (
