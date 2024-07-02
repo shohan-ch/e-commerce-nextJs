@@ -54,7 +54,7 @@ const BaseItemsSlider = (props: Props) => {
       >
         {data &&
           data.slice(0, 17).map((product, index) => (
-            <div>
+            <div key={index}>
               <div className="flex items-center justify-center lg:w-[180px] xl:w-[270px] w-[110px] md:w-[140px] ">
                 <Image
                   src={product.coverImage}

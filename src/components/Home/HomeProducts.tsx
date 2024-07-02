@@ -2,6 +2,8 @@
 import Image from "next/image";
 import data from "../../data/products.json";
 import IconSvg from "@/icons/IconSvg";
+import BaseModal from "@/utils/Modal/BaseModal";
+import { useEffect, useRef, useState } from "react";
 
 type Props = {
   data?: any;
@@ -9,16 +11,42 @@ type Props = {
 
 const HomeProducts = (props: Props) => {
   // const { data } = props;
+  const modalRef = useRef<any>(null);
+  const [filterProduct, setfilterProduct] = useState<any>(null);
 
-  console.log(data);
+  let handleFilterProduct = (id: any) => {
+    let filterProduct = data.find((product) => product.id == id);
+    setfilterProduct(filterProduct);
+  };
+
+  const handleModalShow = (id: number | undefined) => () => {
+    handleFilterProduct(id);
+    modalRef.current.toggleModal();
+  };
+
+  console.log(filterProduct);
+
   return (
     <>
+      <BaseModal ref={modalRef}>
+        <p>{filterProduct?.id}</p>
+        <p>{filterProduct?.title}</p>
+      </BaseModal>
+
+      <button
+        className="mb-10 bg-red-500 p-2 text-white"
+        onClick={() => modalRef.current.toggleModal()}
+      >
+        Open
+      </button>
+
       <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-4">
         {data &&
           data.map((product, index) => (
             <div
               key={index}
               className="border rounded-lg shadow-sm p-4 cursor-pointer group hover:shadow-md transition-all duration-200"
+              onClick={handleModalShow(product.id)}
             >
               <div className="imageSection relative h-[50%]">
                 <Image
