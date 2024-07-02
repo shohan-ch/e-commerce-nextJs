@@ -3,6 +3,8 @@ import { ReactNode, forwardRef, useImperativeHandle, useState } from "react";
 type Props = {
   title?: string;
   children: ReactNode;
+  width?: "small" | "large";
+  position?: "top" | "center";
 };
 
 const icon = {
@@ -25,8 +27,13 @@ const icon = {
   ),
 };
 const BaseModal = (props: Props, ref: any) => {
-  const { title, children } = props;
+  const { title, children, width, position } = props;
   const [isModalVisiable, setIsModalVisiable] = useState<boolean>(false);
+
+  const style = {
+    width: width == "large" ? "max-w-[80vw]" : "max-w-4xl",
+    position: position == "top" ? "top-0" : "",
+  };
 
   const handleModal = () => {
     setIsModalVisiable(!isModalVisiable);
@@ -47,7 +54,9 @@ const BaseModal = (props: Props, ref: any) => {
             : "opacity-0 pointer-events-none"
         } flex justify-center h-screen transition-all duration-500 ease-in-out overflow-y-auto bg-gray-600 bg-opacity-50 overflow-x-hidden fixed top-0 right-0 left-0 z-50 items-center`}
       >
-        <div className="relative w-full max-w-2xl max-h-full p-4">
+        <div
+          className={`${style.position} ${style.width} absolute w-full max-h-full p-4`}
+        >
           {/* Modal content */}
           <div className="relative bg-white rounded-lg shadow ">
             {/* Modal header */}

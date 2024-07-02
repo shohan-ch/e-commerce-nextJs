@@ -28,7 +28,7 @@ const HomeProducts = (props: Props) => {
 
   return (
     <>
-      <BaseModal ref={modalRef}>
+      <BaseModal ref={modalRef} width="large" position="top">
         <p>{filterProduct?.id}</p>
         <p>{filterProduct?.title}</p>
       </BaseModal>
