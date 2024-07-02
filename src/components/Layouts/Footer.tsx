@@ -10,7 +10,7 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <div className="px-10 pb-4 ">
+    <div className="px-10 py-4 bg-gray-50 shadow">
       <div className="grid xl:grid-cols-5 sm:grid-cols-2 md:grid-cols-3 gap-8 my-5 border-b pb-3">
         <div className="space-y-5 ">
           <div className="logo flex items-center gap-x-4">

@@ -6,7 +6,7 @@ type Props = {};
 const TopNav = (props: Props) => {
   return (
     <div>
-      <nav className="bg-white shadow h-16 py-9 px-10 flex items-center justify-between">
+      <nav className="bg-white shadow h-16 py-9 px-10 flex items-center justify-between fixed w-full top-0 z-50">
         <div className="logo flex items-center gap-x-4">
           <span>
             <IconSvg name="logo" />
