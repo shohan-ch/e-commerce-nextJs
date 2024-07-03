@@ -4,6 +4,7 @@ import data from "../../data/products.json";
 import IconSvg from "@/icons/IconSvg";
 import BaseModal from "@/utils/Modal/BaseModal";
 import { useEffect, useRef, useState } from "react";
+import ProductInModal from "../Products/ProductInModal";
 
 type Props = {
   data?: any;
@@ -29,16 +30,10 @@ const HomeProducts = (props: Props) => {
   return (
     <>
       <BaseModal ref={modalRef} width="large" position="top">
-        <p>{filterProduct?.id}</p>
-        <p>{filterProduct?.title}</p>
+        <ProductInModal data={filterProduct} />
+        {/* <p>{filterProduct?.id}</p>
+        <p>{filterProduct?.title}</p> */}
       </BaseModal>
-
-      <button
-        className="mb-10 bg-red-500 p-2 text-white"
-        onClick={() => modalRef.current.toggleModal()}
-      >
-        Open
-      </button>
 
       <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-4">
         {data &&
