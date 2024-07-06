@@ -5,7 +5,14 @@
   "quantity":"5 liter",
   "price":"120",
   "salePrice":"100",
-  "coverImage":"https://chaldn.com/_mpimage/rupchanda-fortified-soyabean-oil-5-ltr?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D137237&q=best&v=1&m=400&webp=1" 
+  "coverImage":"https://chaldn.com/_mpimage/rupchanda-fortified-soyabean-oil-5-ltr?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D137237&q=best&v=1&m=400&webp=1", 
+  "images":[
+    "https://chaldn.com/_mpimage/fresh-super-premium-vacuum-salt-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D128654&q=best&v=1&m=400&webp=1",
+    "https://chaldn.com/_mpimage/chola-boot-chick-peas-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D126716&q=best&v=1&m=400&webp=1"
+  
+  ]
+
+
 },
 {
   "id":2,
@@ -13,7 +20,15 @@
   "quantity":"1 kg",
   "price":"50",
   "salePrice":"40",
-  "coverImage":"https://chaldn.com/_mpimage/fresh-super-premium-vacuum-salt-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D128654&q=best&v=1&m=400&webp=1" 
+  "coverImage":"https://chaldn.com/_mpimage/fresh-super-premium-vacuum-salt-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D128654&q=best&v=1&m=400&webp=1",
+  "images":[
+    "https://chaldn.com/_mpimage/fresh-super-premium-vacuum-salt-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D128654&q=best&v=1&m=400&webp=1",
+    "https://chaldn.com/_mpimage/shagor-kola-banana-sagor-4-pcs?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D76879&q=best&v=1&m=400&webp=1",
+    "https://chaldn.com/_mpimage/chola-boot-chick-peas-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D126716&q=best&v=1&m=400&webp=1",
+    "https://chaldn.com/_mpimage/shagor-kola-banana-sagor-4-pcs?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D76879&q=best&v=1&m=400&webp=1",
+    "https://chaldn.com/_mpimage/fresh-super-premium-vacuum-salt-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D128654&q=best&v=1&m=400&webp=1"
+  ] 
+
 },
 {
   "id":3,
@@ -21,7 +36,14 @@
   "quantity":"4 pcs",
   "price":"40",
   "salePrice":"30",
-  "coverImage":"https://chaldn.com/_mpimage/shagor-kola-banana-sagor-4-pcs?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D76879&q=best&v=1&m=400&webp=1" 
+  "coverImage":"https://chaldn.com/_mpimage/shagor-kola-banana-sagor-4-pcs?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D76879&q=best&v=1&m=400&webp=1",
+  "images":[
+    "https://chaldn.com/_mpimage/fresh-super-premium-vacuum-salt-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D128654&q=best&v=1&m=400&webp=1",
+    "https://chaldn.com/_mpimage/shagor-kola-banana-sagor-4-pcs?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D76879&q=best&v=1&m=400&webp=1",
+    "https://chaldn.com/_mpimage/chola-boot-chick-peas-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D126716&q=best&v=1&m=400&webp=1",
+    "https://chaldn.com/_mpimage/shagor-kola-banana-sagor-4-pcs?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D76879&q=best&v=1&m=400&webp=1",
+    "https://chaldn.com/_mpimage/fresh-super-premium-vacuum-salt-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D128654&q=best&v=1&m=400&webp=1"
+  ]
 },
 {
   "title": "Chula Boot",
