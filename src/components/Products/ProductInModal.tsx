@@ -1,7 +1,7 @@
 "use client";
 import IconSvg from "@/icons/IconSvg";
 import Image from "next/image";
-import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 type Props = {
   data: any;
@@ -12,7 +12,7 @@ const ProductInModal = (props: Props) => {
   const allImages = data && [data.coverImage, ...data.images];
   const [previewImage, setPreviewImage] = useState<any>();
   const [imageIndex, setImageIndex] = useState<number>(0);
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (allImages) {
       setPreviewImage(allImages[imageIndex]);
     }
@@ -26,12 +26,15 @@ const ProductInModal = (props: Props) => {
 
   return (
     <div>
-      <div className="grid grid-cols-5 gap-14">
-        <div className="col-span-3 flex flex-col-reverse lg:flex-row gap-x-5 ">
-          <div className="lg:w-[17%] rounded-md border p-4 h-[61.5vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+      <div className="lg:grid lg:grid-cols-5 xl:gap-14 gap-5 spce-y-5">
+        <div className="col-span-3 flex flex-col-reverse xl:flex-row gap-5 ">
+          <div className="xl:w-[17%] flex gap-5 xl:flex-col rounded-md border p-2 xl:h-[61.5vh] overflow-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {allImages &&
               allImages.map((image: any, index: number) => (
-                <div key={index} className="mb-3 last:mb-0 size-[72px] mx-auto">
+                <div
+                  key={index}
+                  className="mb-3 last:mb-0 size-[72px] flex-shrink-0 mx-auto"
+                >
                   <input
                     className="appearance-none peer"
                     type="radio"
@@ -55,9 +58,10 @@ const ProductInModal = (props: Props) => {
                 </div>
               ))}
           </div>
+
           <div
             id="pereviewImageSection"
-            className="relative w-[80%] border rounded-md flex justify-center items-center "
+            className="relative xl:w-[80%] border rounded-md flex justify-center items-center "
           >
             <Image
               src={previewImage}
