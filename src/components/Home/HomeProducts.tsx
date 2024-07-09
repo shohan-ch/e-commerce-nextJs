@@ -4,7 +4,7 @@ import data from "../../data/products.json";
 import IconSvg from "@/icons/IconSvg";
 import BaseModal from "@/utils/Modal/BaseModal";
 import { useEffect, useRef, useState } from "react";
-import ProductInModal from "../Products/ProductInModal";
+import ProductModal from "../Products/ProductModal/ProductModal";
 
 type Props = {
   data?: any;
@@ -30,7 +30,7 @@ const HomeProducts = (props: Props) => {
   return (
     <>
       <BaseModal ref={modalRef} width="large" position="top">
-        <ProductInModal data={filterProduct} />
+        <ProductModal data={filterProduct} />
       </BaseModal>
 
       <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-4">

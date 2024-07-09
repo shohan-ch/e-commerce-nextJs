@@ -7,7 +7,7 @@ type Props = {
   data: any;
 };
 
-const ProductInModal = (props: Props) => {
+const ProductModal = (props: Props) => {
   const { data } = props;
   const allImages = data && [data.coverImage, ...data.images];
   const [previewImage, setPreviewImage] = useState<any>();
@@ -102,4 +102,4 @@ const ProductInModal = (props: Props) => {
   );
 };
 
-export default ProductInModal;
+export default ProductModal;
