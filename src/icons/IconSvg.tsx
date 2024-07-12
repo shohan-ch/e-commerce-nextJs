@@ -18,31 +18,33 @@ const icons: any = {
       />
     </svg>
   ),
-  plus: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width={28}
-      height={28}
-      color={"#FFFFFF"}
-      fill={"none"}
-    >
-      <path
-        d="M12 4V20"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M4 12H20"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  ),
+  plus(color: string = "#FFFFFF") {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width={28}
+        height={28}
+        color={color}
+        fill={"none"}
+      >
+        <path
+          d="M12 4V20"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M4 12H20"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  },
   prev: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -153,11 +155,14 @@ type Props = {
   name: string;
   width?: string;
   height?: string;
+  color?: string;
 };
 
 const IconSvg = (props: Props) => {
-  const { name, width, height } = props;
-  return <>{icons[name]}</>;
+  const { name, width, height, color } = props;
+  return (
+    <>{typeof icons[name] === "function" ? icons[name](color) : icons[name]}</>
+  );
 };
 
 export default IconSvg;
