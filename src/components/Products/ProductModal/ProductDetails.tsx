@@ -24,13 +24,23 @@ const ProductDetails = (props: Props) => {
         <span className="line-through">{data?.price}</span>
       </p>
 
-      <div id="cartDiv" className="mb-10">
-        <div className="bg-gray-100 rounded  h-[50px]  flex items-center justify-center">
-          <button>-</button>1
+      <div id="cartDiv" className="mb-10 mt-4">
+        <div className="bg-gray-100 rounded py-3  flex gap-x-10 items-center justify-center">
+          <button>
+            <IconSvg name="minus" />
+          </button>
+          <span className="text-2xl">1</span>
           <button>
             <IconSvg name="plus" color="black" />
           </button>
         </div>
+
+        <button className="bg-primary  py-3 text-white w-full mt-4 rounded flex gap-x-3 items-center justify-center">
+          <span>
+            <IconSvg name="cart2" />
+          </span>
+          Add to Cart
+        </button>
       </div>
 
       <p className="font-bold text-base mb-3">Product Details:</p>
