@@ -47,7 +47,7 @@ const BaseModal = (props: Props, ref: any) => {
   return (
     <div>
       <div
-        // onClick={handleModal}
+        onClick={() => setIsModalVisiable(false)}
         className={`${
           isModalVisiable
             ? "opacity-100 pointer-events-auto"
@@ -55,6 +55,7 @@ const BaseModal = (props: Props, ref: any) => {
         } flex justify-center h-screen transition-all duration-500 ease-in-out overflow-y-auto bg-gray-800 bg-opacity-50 overflow-x-hidden fixed top-0 right-0 left-0 z-50 items-center`}
       >
         <div
+          onClick={(e) => e.stopPropagation()}
           className={`${style.position} ${style.width} absolute w-full max-h-full p-4`}
         >
           {/* Modal content */}
