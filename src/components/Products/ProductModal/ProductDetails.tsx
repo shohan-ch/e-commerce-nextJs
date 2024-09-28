@@ -45,7 +45,7 @@ const ProductDetails = (props: Props) => {
 
       <p className="font-bold text-base mb-3">Product Details:</p>
       <p>
-        <span className="line-clamp-5 text-pretty">
+        <span className="line-clamp-5 text-pretty leading-7">
           {data?.details}
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
           fugit inventore incidunt earum dolorum aliquid aspernatur repudiandae

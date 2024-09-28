@@ -4,6 +4,8 @@ import Image from "next/image";
 import React, { useRef, useState, useEffect } from "react";
 import ImagePreview from "./ImagePreview";
 import ProductDetails from "./ProductDetails";
+import products from "../../../data/products.json";
+import BaseProductDetailsSlider from "@/utils/Slider/BaseProductDetailsSlider";
 
 type Props = {
   data: any;
@@ -23,6 +25,7 @@ const ProductModal = (props: Props) => {
           <ProductDetails data={data} />
         </div>
       </div>
+      <BaseProductDetailsSlider title="Related products" data={products} />
     </div>
   );
 };
