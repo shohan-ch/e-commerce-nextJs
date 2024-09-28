@@ -19,7 +19,9 @@ export default function Home() {
       </div>
 
       <BaseItemsSlider title="Popular product of our store" data={data} />
-      <BannerDiscount />
+      <div style={{ paddingBottom: "400px" }}>
+        <BannerDiscount />
+      </div>
       <BaseItemsSlider title="Your viewed products of last time" data={data} />
 
       {/* <HomeSlider /> */}

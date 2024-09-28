@@ -11,7 +11,7 @@ const TopNav = (props: Props) => {
           <span>
             <IconSvg name="logo" />
           </span>
-          <h3 className="font-bold text-xl">E-Commerce</h3>
+          <h3 className="font-bold text-xl">BoroBazar</h3>
         </div>
         <div className="flex gap-x-10">
           <div className="relative">

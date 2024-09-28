@@ -10,24 +10,24 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <div className="px-10 py-4 bg-gray-50 shadow">
-      <div className="grid xl:grid-cols-5 sm:grid-cols-2 md:grid-cols-3 gap-8 my-5 border-b pb-3">
+    <div className="px-10 py-16 bg-gray-50 shadow text-[#595959]">
+      <div className="grid xl:grid-cols-5 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-5 mb-10 border-b pb-14">
         <div className="space-y-5 ">
           <div className="logo flex items-center gap-x-4">
             <span>
               <IconSvg name="logo" />
             </span>
-            <h3 className="font-bold text-xl">E-Commerce</h3>
+            <h3 className="font-bold text-xl text-black">E-Commerce</h3>
           </div>
-          <p>
+          <p className="leading-7">
             We offer high-quality foods and the best delivery service, and the
             food market you can blindly trust
           </p>
         </div>
 
         <div className="space-y-5">
-          <h2 className="font-bold text-xl">About Us</h2>
-          <ul>
+          <h2 className="font-bold text-xl text-black">About Us</h2>
+          <ul className="space-y-2">
             <li>About Us</li>
             <li>Contact Us</li>
             <li>Customer Support</li>
@@ -36,8 +36,8 @@ const Footer = (props: Props) => {
           </ul>
         </div>
         <div className="space-y-5">
-          <h2 className="font-bold text-xl">Social</h2>
-          <ul>
+          <h2 className="font-bold text-xl text-black">Social Community</h2>
+          <ul className="space-y-2">
             <li>Facebook</li>
             <li>X</li>
             <li>Instagram</li>
@@ -45,8 +45,8 @@ const Footer = (props: Props) => {
           </ul>
         </div>
         <div className="space-y-5">
-          <h2 className="font-bold text-xl">Help</h2>
-          <ul>
+          <h2 className="font-bold text-xl text-black">Help Information</h2>
+          <ul className="space-y-2">
             <li>Payment</li>
             <li>Shipping</li>
             <li>Return And Replacement</li>
@@ -55,7 +55,7 @@ const Footer = (props: Props) => {
           </ul>
         </div>
         <div className="space-y-5">
-          <h2 className="font-bold text-xl">Subscribe Now</h2>
+          <h2 className="font-bold text-xl text-black">Subscribe Now</h2>
           <p>
             Subscribe your email for newsletter and featured news based on your
             interest
