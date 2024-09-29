@@ -24,7 +24,7 @@ const ImagePreview = (props: Props) => {
 
   return (
     <>
-      <div className="xl:w-[17%] flex gap-5 xl:flex-col rounded-md border p-2 xl:h-[61.5vh] overflow-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+      <div className="xl:w-[17%] flex gap-5 xl:flex-col rounded-md border p-2 xl:h-[50vh] overflow-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         {data &&
           data.map((image: any, index: number) => (
             <div
@@ -57,7 +57,7 @@ const ImagePreview = (props: Props) => {
 
       <div
         id="pereviewImageSection"
-        className="relative xl:w-[80%] border rounded-md flex justify-center items-center "
+        className=" xl:h-[50vh] relative xl:w-[80%] border rounded-md flex justify-center items-center "
       >
         <Image
           src={previewImage}

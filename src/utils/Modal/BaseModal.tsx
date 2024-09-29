@@ -52,7 +52,7 @@ const BaseModal = (props: Props, ref: any) => {
           isModalVisiable
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
-        } flex justify-center h-screen transition-all duration-500 ease-in-out overflow-y-auto bg-gray-800 bg-opacity-50 overflow-x-hidden fixed top-0 right-0 left-0 z-50 items-center`}
+        } flex justify-center h-screen transition-all duration-500 ease-in-out overflow-y-auto bg-gray-800 bg-opacity-50 overflow-x-hidden fixed top-0 right-0 left-0 bottom-[20px] z-50 items-center`}
       >
         <div
           onClick={(e) => e.stopPropagation()}

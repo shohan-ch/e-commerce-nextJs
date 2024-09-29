@@ -13,6 +13,7 @@ const BaseProductDetailsSlider = (props: Props) => {
   const productRef = useRef<HTMLDivElement | any>(null);
   const productDivRef = useRef<HTMLDivElement | any>(null);
   const [lastVisibleIndex, setLastVisibleIndex] = useState<number>(-1);
+  const [timeOutId, setTimeOutId] = useState<any>(null);
 
   const handleScrollToX = (direction: "right" | "left") => () => {
     const productWidth = productRef.current.offsetWidth;
@@ -23,12 +24,16 @@ const BaseProductDetailsSlider = (props: Props) => {
     }
   };
 
-  const scrollReset = () => {
-    setTimeout(() => {
+  const scrollResetToBegining = () => {
+    const timeId = setTimeout(() => {
       productDivRef.current.scrollLeft = 0;
-    }, 8000);
+    }, 20000);
+    setTimeOutId(timeId);
   };
 
+  const scrollStayInSamePosition = () => {
+    clearTimeout(timeOutId);
+  };
   const handleScroll = () => {
     const containerScrollLeft = productDivRef.current.scrollLeft;
     const containerWidth = productDivRef.current.offsetWidth;
@@ -50,11 +55,15 @@ const BaseProductDetailsSlider = (props: Props) => {
 
   return (
     <>
-      <div className="mt-12 relative" onMouseLeave={scrollReset}>
+      <div
+        className="mt-12 relative"
+        onMouseLeave={scrollResetToBegining}
+        onMouseEnter={scrollStayInSamePosition}
+      >
         <h3 className="font-bold text-xl mb-5">{title}</h3>
         <div
           ref={productDivRef}
-          className="flex justify-evenly gap-4 overflow-x-auto h-[380px] scroll-smooth"
+          className="flex justify-evenly gap-4 overflow-x-auto h-[380px] scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
           {data &&
             data.map((product: any, index: number) => {
@@ -62,7 +71,7 @@ const BaseProductDetailsSlider = (props: Props) => {
                 <div
                   key={index}
                   ref={productRef}
-                  className={`w-[250px] flex-none border rounded-lg shadow-sm p-4 cursor-pointer group hover:shadow-md transition-all duration-200
+                  className={`w-[250px]  flex-none border rounded-lg shadow-sm p-4 cursor-pointer group hover:shadow-md transition-all duration-200
                      ${index === lastVisibleIndex ? "opacity-40" : ""}
                     `}
                 >
