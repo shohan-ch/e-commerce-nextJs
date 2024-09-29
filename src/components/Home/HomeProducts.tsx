@@ -23,9 +23,8 @@ const HomeProducts = (props: Props) => {
   const handleModalShow = (id: number | undefined) => () => {
     handleFilterProduct(id);
     modalRef.current.toggleModal();
+    console.log(modalRef.current.isModalVisiable);
   };
-
-  console.log(filterProduct);
 
   return (
     <>

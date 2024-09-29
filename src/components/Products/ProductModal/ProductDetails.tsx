@@ -8,7 +8,6 @@ type Props = {
 
 const ProductDetails = (props: Props) => {
   const { data } = props;
-  console.log(data, "from details");
 
   return (
     <div>
