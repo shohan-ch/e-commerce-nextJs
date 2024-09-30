@@ -3,7 +3,7 @@ import Image from "next/image";
 import data from "../../data/products.json";
 import IconSvg from "@/icons/IconSvg";
 import BaseModal from "@/utils/Modal/BaseModal";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ProductModal from "../Products/ProductModal/ProductModal";
 
 type Props = {
@@ -23,7 +23,11 @@ const HomeProducts = (props: Props) => {
   const handleModalShow = (id: number | undefined) => () => {
     handleFilterProduct(id);
     modalRef.current.toggleModal();
-    console.log(modalRef.current.isModalVisiable);
+  };
+
+  const showCartContainer = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    console.log(e);
   };
 
   return (
@@ -37,7 +41,7 @@ const HomeProducts = (props: Props) => {
           data.map((product, index) => (
             <div
               key={index}
-              className="border rounded-lg shadow-sm p-4 cursor-pointer group hover:shadow-md transition-all duration-200"
+              className="relative border rounded-lg shadow-sm p-4 cursor-pointer group hover:shadow-md transition-all duration-200"
               onClick={handleModalShow(product.id)}
             >
               <div className="imageSection relative h-[50%]">
@@ -48,7 +52,10 @@ const HomeProducts = (props: Props) => {
                   height={150}
                   className="text-center mx-auto group-hover:scale-110 transition-all duration-200"
                 />
-                <button className="absolute right-0 bottom-0 bg-primary size-10 rounded-full  flex justify-center items-center">
+                <button
+                  onClick={showCartContainer}
+                  className="absolute right-0 bottom-0 bg-primary size-10 rounded-full  flex justify-center items-center"
+                >
                   <IconSvg name="plus" />
                 </button>
               </div>

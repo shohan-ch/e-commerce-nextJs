@@ -1,5 +1,6 @@
 "use client";
 import IconSvg from "@/icons/IconSvg";
+import ImgaeMagnifier from "@/utils/Ui/ImgaeMagnifier";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 type Props = {
@@ -59,13 +60,21 @@ const ImagePreview = (props: Props) => {
         id="pereviewImageSection"
         className=" xl:h-[50vh] relative xl:w-[80%] border rounded-md flex justify-center items-center "
       >
-        <Image
+        <ImgaeMagnifier
+          src={previewImage}
+          alt={previewImage}
+          width={300}
+          height={300}
+        />
+
+        {/* <Image
+          onMouseMove={() => console.log("s")}
           src={previewImage}
           alt={previewImage}
           width={300}
           height={300}
           className="transition-all duration-300 ease-in"
-        />
+        /> */}
 
         {/* Next Prev Buttons */}
 
