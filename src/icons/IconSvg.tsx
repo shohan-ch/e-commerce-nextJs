@@ -21,24 +21,26 @@ const icons: any = {
       />
     </svg>
   ),
-  minus: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width={28}
-      height={28}
-      color={"#000000"}
-      fill={"none"}
-    >
-      <path
-        d="M20 12L4 12"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  ),
+  minus(color = "#000000") {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width={28}
+        height={28}
+        color={color}
+        fill={"none"}
+      >
+        <path
+          d="M20 12L4 12"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  },
   downArrow: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
