@@ -37,7 +37,9 @@ const BaseItemsSlider = (props: Props) => {
   };
 
   const handleScrollToggle = () => {
-    scrollRef.current.classList.toggle(style.scrollHide);
+    setTimeout(() => {
+      scrollRef.current.classList.toggle(style.scrollHide);
+    }, 300);
     setIsButtonVisible(!isButtonVisible);
   };
 
@@ -50,7 +52,7 @@ const BaseItemsSlider = (props: Props) => {
       <h2 className="font-bold text-2xl mt-3">{title}</h2>
       <div
         ref={scrollRef}
-        className={`${style.scrollHide} md:h-[16vh] h-[13vh] flex justify-evenly overflow-x-auto scroll-smooth`}
+        className={`${style.scrollHide} md:h-[17vh] h-[13vh] flex justify-evenly overflow-x-auto scroll-smooth`}
       >
         {data &&
           data.slice(0, 17).map((product, index) => (

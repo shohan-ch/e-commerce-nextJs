@@ -6,15 +6,16 @@ import BaseModal from "@/utils/Modal/BaseModal";
 import React, { useEffect, useRef, useState } from "react";
 import ProductModal from "../Products/ProductModal/ProductModal";
 import SingleProduct from "../Products/ProductModal/SingleProduct";
+import { useCart } from "@/context/CartContextProvider";
 
 type Props = {
   data?: any;
 };
 
 const HomeProducts = (props: Props) => {
-  // const { data } = props;
   const modalRef = useRef<any>(null);
   const [filterProduct, setfilterProduct] = useState<any>(null);
+  const cart = useCart();
 
   let handleFilterProduct = (id: any) => {
     let filterProduct = data.find((product) => product.id == id);
@@ -24,11 +25,6 @@ const HomeProducts = (props: Props) => {
   const handleModalShow = (id: number | undefined) => {
     handleFilterProduct(id);
     modalRef.current.toggleModal();
-  };
-
-  const showCartContainer = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    console.log(e);
   };
 
   return (
