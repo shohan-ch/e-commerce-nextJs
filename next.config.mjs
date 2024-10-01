@@ -6,6 +6,8 @@ const nextConfig = {
   images: {
     domains: ["borobazar.vercel.app", "localhost", "chaldn.com"],
   },
+
+  reactStrictMode: false,
 };
 
 export default nextConfig;

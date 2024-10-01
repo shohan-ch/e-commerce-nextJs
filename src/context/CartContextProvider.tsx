@@ -1,4 +1,8 @@
 "use client";
+import {
+  getLocalStorageItem,
+  setLocalStorage,
+} from "@/helpers/loaclStorageHelper";
 import React, { createContext, useContext, useReducer } from "react";
 
 export const CartContext = createContext<any>([{ id: 1, cart: 100 }]);
@@ -8,19 +12,43 @@ const cartReducer = (carts: any, action: any) => {
   const { type } = action;
   switch (type) {
     case "add": {
-      let newCart = carts.some((c: any) => c.id == action.product.id)
-        ? carts.map((product: any) => {
+      let cartInlocalStorage: any = JSON.parse(
+        getLocalStorageItem("cart") || "[]"
+      );
+      let storageNew = cartInlocalStorage.some(
+        (c: any) => c.id == action.product.id
+      )
+        ? cartInlocalStorage.map((product: any, index: number) => {
             if (product.id == action.product.id) {
-              product.cart = action.product.cart;
+              return {
+                ...product,
+                cart: product.cart + 1,
+              };
             }
             return product;
           })
-        : [...carts, action.product];
-      return newCart;
+        : [...cartInlocalStorage, action.product];
+
+      setLocalStorage("cart", JSON.stringify(storageNew));
+
+      return storageNew;
+
+      // let newCart = carts.some((c: any) => c.id == action.product.id)
+      //   ? carts.map((product: any) => {
+      //       if (product.id == action.product.id) {
+      //         // product.cart = action.product.cart;
+      //         product.cart += 1;
+      //       }
+      //       return product;
+      //     })
+      //   : [...carts, action.product];
+
+      // return newCart;
     }
 
-    default:
-      break;
+    default: {
+      throw Error("Unknown action: " + action.type);
+    }
   }
 };
 
