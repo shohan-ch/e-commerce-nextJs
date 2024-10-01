@@ -1,4 +1,5 @@
 import ProductCartPanel from "@/components/Cart/ProductCartPanel";
+import { useCartDispatch } from "@/context/CartContextProvider";
 import IconSvg from "@/icons/IconSvg";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -11,10 +12,19 @@ type Props = {
 const SingleProduct = (props: Props) => {
   const { product, handleModalShow } = props;
   const [isVisibleCartContainer, setIsVisibleCartContainer] = useState(false);
+  const dispatch = useCartDispatch();
 
   const showCartContainer = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsVisibleCartContainer(true);
+  };
+
+  const removeCartItem = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
+  const addCartItem = (e: React.MouseEvent) => {
+    e.stopPropagation();
   };
 
   return (
@@ -40,7 +50,7 @@ const SingleProduct = (props: Props) => {
             </button>
           )}
 
-          {isVisibleCartContainer && <ProductCartPanel />}
+          {isVisibleCartContainer && <ProductCartPanel product={product} />}
         </div>
       </div>
       <div className="space-y-3 mt-5">

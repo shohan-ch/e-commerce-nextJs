@@ -4,11 +4,19 @@ import React, { createContext, useContext, useReducer } from "react";
 export const CartContext = createContext<any>([{ id: 1, cart: 100 }]);
 export const CartDispatchContext = createContext<any>(null);
 
-const cartReducer = (state: any, action: any) => {
+const cartReducer = (carts: any, action: any) => {
   const { type } = action;
   switch (type) {
-    case type == "add": {
-      return [...state];
+    case "add": {
+      let newCart = carts.some((c: any) => c.id == action.product.id)
+        ? carts.map((product: any) => {
+            if (product.id == action.product.id) {
+              product.cart = action.product.cart;
+            }
+            return product;
+          })
+        : [...carts, action.product];
+      return newCart;
     }
 
     default:

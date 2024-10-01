@@ -1,15 +1,27 @@
+import { useCart, useCartDispatch } from "@/context/CartContextProvider";
 import IconSvg from "@/icons/IconSvg";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-type Props = {};
+type Props = {
+  product: any;
+};
 
 const ProductCartPanel = (props: Props) => {
+  const { product } = props;
+  const dispatchCart = useCartDispatch();
+  const [countCartItem, setCountCartItem] = useState(1);
+
   const removeCartItem = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
 
   const addCartItem = (e: React.MouseEvent) => {
     e.stopPropagation();
+    setCountCartItem(countCartItem + 1);
+    dispatchCart({
+      type: "add",
+      product: { ...product, cart: countCartItem },
+    });
   };
 
   return (
@@ -18,7 +30,7 @@ const ProductCartPanel = (props: Props) => {
         <button onClick={removeCartItem}>
           <IconSvg name="minus" color="gray" />
         </button>
-        <span className="text-xl">1</span>
+        <span className="text-xl">{countCartItem}</span>
         <button onClick={addCartItem}>
           <IconSvg name="plus" color="gray" />
         </button>
