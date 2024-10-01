@@ -1,3 +1,4 @@
+import ProductCartPanel from "@/components/Cart/ProductCartPanel";
 import IconSvg from "@/icons/IconSvg";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -15,13 +16,7 @@ const SingleProduct = (props: Props) => {
     e.stopPropagation();
     setIsVisibleCartContainer(true);
   };
-  const removeCartItem = (e: React.MouseEvent) => {
-    e.stopPropagation();
-  };
 
-  const addCartItem = (e: React.MouseEvent) => {
-    e.stopPropagation();
-  };
   return (
     <div
       onClick={() => handleModalShow(product.id)}
@@ -45,17 +40,7 @@ const SingleProduct = (props: Props) => {
             </button>
           )}
 
-          {isVisibleCartContainer && (
-            <div className="transition-all duration-1000 absolute bottom-0 left-[50%] -translate-x-[50%] bg-white shadow-md rounded-full py-2 px-3 flex gap-x-10 items-center justify-center">
-              <button onClick={removeCartItem}>
-                <IconSvg name="minus" color="gray" />
-              </button>
-              <span className="text-xl">1</span>
-              <button onClick={addCartItem}>
-                <IconSvg name="plus" color="gray" />
-              </button>
-            </div>
-          )}
+          {isVisibleCartContainer && <ProductCartPanel />}
         </div>
       </div>
       <div className="space-y-3 mt-5">
