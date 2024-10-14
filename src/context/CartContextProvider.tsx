@@ -30,20 +30,7 @@ const cartReducer = (carts: any, action: any) => {
         : [...cartInlocalStorage, action.product];
 
       setLocalStorage("cart", JSON.stringify(storageNew));
-
       return storageNew;
-
-      // let newCart = carts.some((c: any) => c.id == action.product.id)
-      //   ? carts.map((product: any) => {
-      //       if (product.id == action.product.id) {
-      //         // product.cart = action.product.cart;
-      //         product.cart += 1;
-      //       }
-      //       return product;
-      //     })
-      //   : [...carts, action.product];
-
-      // return newCart;
     }
 
     default: {
@@ -69,8 +56,10 @@ export const CartContextProvider = ({ children }: props) => {
 };
 
 export const useCart = () => {
+  let cartFormLocalStorage = JSON.parse(getLocalStorageItem("cart") || "[]");
   const cart = useContext(CartContext);
-  return cart;
+
+  return cartFormLocalStorage || cart;
 };
 export const useCartDispatch = () => {
   const dispatch = useContext(CartDispatchContext);

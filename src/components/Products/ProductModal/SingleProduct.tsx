@@ -1,22 +1,49 @@
 import ProductCartPanel from "@/components/Cart/ProductCartPanel";
-import { useCartDispatch } from "@/context/CartContextProvider";
+import { useCart, useCartDispatch } from "@/context/CartContextProvider";
 import IconSvg from "@/icons/IconSvg";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type Props = {
   product: any;
   handleModalShow: (id: number | undefined) => void;
 };
-
 const SingleProduct = (props: Props) => {
   const { product, handleModalShow } = props;
   const [isVisibleCartContainer, setIsVisibleCartContainer] = useState(false);
-  const dispatch = useCartDispatch();
+  const productsInCartContext = useCart();
+  const dispatchCart = useCartDispatch();
+
+  useEffect(() => {
+    if (productsInCartContext.length > 0) {
+      let isExistProductInCart = productsInCartContext.some(
+        (p: any) => p.id == product.id
+      );
+      console.log(isExistProductInCart);
+      isExistProductInCart && setIsVisibleCartContainer(true);
+    }
+  }, []);
+
+  const cartCountOnProduct = (id: number) => {
+    if (id) {
+      let getProduct = productsInCartContext.some((p: any) => p.id == id)
+        ? (productsInCartContext || []).find((p: any) => p.id == id)
+        : 0;
+
+      if (getProduct) {
+        return getProduct.cart;
+      } else {
+        return null;
+      }
+    } else {
+      setIsVisibleCartContainer(false);
+    }
+  };
 
   const showCartContainer = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsVisibleCartContainer(true);
+    dispatchCart({ type: "add", product: { ...product, cart: 1 } });
   };
 
   const removeCartItem = (e: React.MouseEvent) => {
@@ -50,7 +77,12 @@ const SingleProduct = (props: Props) => {
             </button>
           )}
 
-          {isVisibleCartContainer && <ProductCartPanel product={product} />}
+          {isVisibleCartContainer && (
+            <ProductCartPanel
+              product={product}
+              cartCount={cartCountOnProduct(product.id)}
+            />
+          )}
         </div>
       </div>
       <div className="space-y-3 mt-5">
