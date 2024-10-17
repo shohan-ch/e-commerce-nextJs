@@ -52,12 +52,8 @@ const cartReducer = (carts: any, action: any) => {
         : [...cartInlocalStorage];
 
       filterStorage = filterStorage.filter((c: any) => c.cart != 0);
-
       setLocalStorage("cart", JSON.stringify(filterStorage));
-
-      console.log(filterStorage);
-
-      return [...carts];
+      return filterStorage;
     }
 
     default: {
