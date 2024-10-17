@@ -33,10 +33,9 @@ const SingleProduct = (props: Props) => {
       if (getProduct) {
         return getProduct.cart;
       } else {
+        setIsVisibleCartContainer(false);
         return null;
       }
-    } else {
-      setIsVisibleCartContainer(false);
     }
   };
 

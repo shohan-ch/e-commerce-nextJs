@@ -33,6 +33,33 @@ const cartReducer = (carts: any, action: any) => {
       return storageNew;
     }
 
+    case "remove": {
+      const { product } = action;
+      let cartInlocalStorage: any = JSON.parse(
+        getLocalStorageItem("cart") || "[]"
+      );
+
+      let filterStorage = cartInlocalStorage.some(
+        (s: any) => s.id == product.id
+      )
+        ? cartInlocalStorage.map((c: any) => {
+            if (c.id == product.id) {
+              let p = { ...c, cart: c.cart - 1 };
+              return p;
+            }
+            return c;
+          })
+        : [...cartInlocalStorage];
+
+      filterStorage = filterStorage.filter((c: any) => c.cart != 0);
+
+      setLocalStorage("cart", JSON.stringify(filterStorage));
+
+      console.log(filterStorage);
+
+      return [...carts];
+    }
+
     default: {
       throw Error("Unknown action: " + action.type);
     }
