@@ -1,9 +1,23 @@
+"use client";
+
+import { useCart } from "@/context/CartContextProvider";
 import IconSvg from "@/icons/IconSvg";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 type Props = {};
 
 const TopNav = (props: Props) => {
+  const productsInCartContext = useCart();
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    let cartCount = 0;
+    productsInCartContext.map((p: any) => {
+      cartCount += p.cart;
+    });
+    setCartCount(cartCount);
+  });
+
   return (
     <div>
       <nav className="bg-white shadow h-16 py-9 px-10 flex items-center justify-between fixed w-full top-0 z-50">
@@ -16,9 +30,9 @@ const TopNav = (props: Props) => {
         <div className="flex gap-x-10">
           <div className="relative">
             <IconSvg name="cart" />
-            <div className="absolute -right-2.5 -top-[12px] bg-primary rounded-full w-6 h-6">
+            <div className="absolute -right-[17px] -top-[12px] bg-primary rounded-full w-6 h-6 p-4">
               <span className="text-white font-semibold text-sm flex items-center justify-center h-full">
-                2
+                {cartCount}
               </span>
             </div>
           </div>
