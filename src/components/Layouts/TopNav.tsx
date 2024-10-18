@@ -2,14 +2,15 @@
 
 import { useCart } from "@/context/CartContextProvider";
 import IconSvg from "@/icons/IconSvg";
-import React, { useEffect, useState } from "react";
+import BaseDrawer from "@/utils/Ui/Drawer/BaseDrawer";
+import React, { useEffect, useRef, useState } from "react";
 
 type Props = {};
 
 const TopNav = (props: Props) => {
   const productsInCartContext = useCart();
   const [cartCount, setCartCount] = useState(0);
-
+  const drawerRef = useRef<any>(null);
   useEffect(() => {
     let cartCount = 0;
     productsInCartContext.map((p: any) => {
@@ -17,6 +18,10 @@ const TopNav = (props: Props) => {
     });
     setCartCount(cartCount);
   });
+
+  const handleDrawerToogle = () => {
+    console.log(drawerRef.current?.handleDrawer());
+  };
 
   return (
     <div>
@@ -28,7 +33,7 @@ const TopNav = (props: Props) => {
           <h3 className="font-bold text-xl">BoroBazar</h3>
         </div>
         <div className="flex gap-x-10">
-          <div className="relative">
+          <div className="relative cursor-pointer" onClick={handleDrawerToogle}>
             <IconSvg name="cart" />
             <div className="absolute -right-[17px] -top-[12px] bg-primary rounded-full w-6 h-6 p-4">
               <span className="text-white font-semibold text-sm flex items-center justify-center h-full">
@@ -42,6 +47,9 @@ const TopNav = (props: Props) => {
           </button>
         </div>
       </nav>
+      <BaseDrawer title="Shopping cart" ref={drawerRef}>
+        <h2>456</h2>
+      </BaseDrawer>
     </div>
   );
 };
