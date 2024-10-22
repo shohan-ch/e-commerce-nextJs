@@ -38,12 +38,12 @@ const CartItemsInDrawer = (props: Props) => {
 
   return (
     <>
-      <div className="product-container max-h-[500px] overflow-y-auto">
+      <div className="product-container max-h-[570px] overflow-y-auto py-8 px-5">
         {products.length &&
           products.map((p: any) => {
             return (
               <div
-                className="flex gap-5 mb-8 border-b last:border-0 pb-8"
+                className="flex gap-5 mb-8 border-b last:border-0 last:mb-0 pb-8 last:pb-0"
                 key={p.id}
               >
                 <span className="flex-2">
@@ -76,7 +76,8 @@ const CartItemsInDrawer = (props: Props) => {
           })}
       </div>
 
-      <div className="checkout-container pt-28 ">
+      <div className="border-t absolute w-full left-0"></div>
+      <div className="checkout-container pt-20 px-5">
         <div className="flex justify-between items-center">
           <p className="text-lg font-bold">Subtotal:</p>
           <p className="font-bold">
