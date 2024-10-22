@@ -21,13 +21,13 @@ const icons: any = {
       />
     </svg>
   ),
-  minus(color = "#000000") {
+  minus(color = "#000000", width = 28, height = 28) {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
-        width={28}
-        height={28}
+        width={width}
+        height={height}
         color={color}
         fill={"none"}
       >
@@ -59,13 +59,13 @@ const icons: any = {
       />
     </svg>
   ),
-  plus(color: string = "#FFFFFF") {
+  plus(color: string = "#FFFFFF", width = 28, height = 28) {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
-        width={28}
-        height={28}
+        width={width}
+        height={height}
         color={color}
         fill={"none"}
       >
@@ -202,7 +202,11 @@ type Props = {
 const IconSvg = (props: Props) => {
   const { name, width, height, color } = props;
   return (
-    <>{typeof icons[name] === "function" ? icons[name](color) : icons[name]}</>
+    <>
+      {typeof icons[name] === "function"
+        ? icons[name](color, width, height)
+        : icons[name]}
+    </>
   );
 };
 

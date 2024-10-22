@@ -4,6 +4,7 @@ import { useCart } from "@/context/CartContextProvider";
 import IconSvg from "@/icons/IconSvg";
 import BaseDrawer from "@/utils/Ui/Drawer/BaseDrawer";
 import React, { useEffect, useRef, useState } from "react";
+import CartItemsInDrawer from "../Cart/CartItemsInDrawer";
 
 type Props = {};
 
@@ -20,7 +21,7 @@ const TopNav = (props: Props) => {
   });
 
   const handleDrawerToogle = () => {
-    console.log(drawerRef.current?.handleDrawer());
+    drawerRef.current?.handleDrawer();
   };
 
   return (
@@ -48,7 +49,7 @@ const TopNav = (props: Props) => {
         </div>
       </nav>
       <BaseDrawer title="Shopping cart" ref={drawerRef}>
-        <h2>456</h2>
+        <CartItemsInDrawer products={productsInCartContext} />
       </BaseDrawer>
     </div>
   );
