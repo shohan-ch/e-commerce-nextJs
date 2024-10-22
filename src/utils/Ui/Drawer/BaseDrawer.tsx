@@ -65,7 +65,7 @@ const BaseDrawer = (props: Props, ref: any) => {
                 </button>
               </span>
             </div>
-            <div className="drawer-body py-8 px-5">{children}</div>
+            <div className="drawer-body">{children}</div>
           </div>
         </div>
       </div>
