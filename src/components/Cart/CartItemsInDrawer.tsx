@@ -1,5 +1,7 @@
 import { useCartDispatch } from "@/context/CartContextProvider";
 import IconSvg from "@/icons/IconSvg";
+import BaseInput from "@/utils/Forms/BaseInput";
+import BaseInputIcon from "@/utils/Forms/BaseInputIcon";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
@@ -38,7 +40,7 @@ const CartItemsInDrawer = (props: Props) => {
 
   return (
     <>
-      <div className="product-container max-h-[570px] overflow-y-auto py-8 px-5">
+      <div className="product-container max-h-[540px] overflow-y-auto py-8 px-5">
         {products.length &&
           products.map((p: any) => {
             return (
@@ -77,9 +79,20 @@ const CartItemsInDrawer = (props: Props) => {
       </div>
 
       <div className="border-t absolute w-full left-0"></div>
-      <div className="checkout-container pt-20 px-5">
+      <div className="checkout-container pt-5 px-5">
+        <div className="flex justify-between items-center mb-4">
+          <p className="text-base ">Promo Code:</p>
+          <div>
+            <BaseInputIcon
+              name="promocode"
+              placeHolder="Promo Code"
+              style="h-[35px] mb-0"
+              handleChange={(e) => console.log(e.target.value)}
+            />
+          </div>
+        </div>
         <div className="flex justify-between items-center">
-          <p className="text-lg font-bold">Subtotal:</p>
+          <p className="text-base font-bold">Subtotal:</p>
           <p className="font-bold">
             <span className="text-2xl">৳</span>
             {subTotal}
