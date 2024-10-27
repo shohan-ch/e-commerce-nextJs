@@ -62,10 +62,10 @@ const BaseProductDetailsSlider = (props: Props) => {
         onMouseLeave={scrollResetToBegining}
         onMouseEnter={scrollStayInSamePosition}
       >
-        <h3 className="font-bold text-xl mb-5">{title}</h3>
+        <h3 className="font-medium text-xl mb-5">{title}</h3>
         <div
           ref={productDivRef}
-          className="flex justify-evenly gap-4 overflow-x-auto h-[380px] scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          className="flex  gap-4 overflow-x-auto h-[380px] scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
           {data &&
             data.map((product: any, index: number) => {
@@ -115,14 +115,16 @@ const BaseProductDetailsSlider = (props: Props) => {
           </div>
         </div>
 
-        <div
-          className={`cursor-pointer absolute top-[55%]  -right-4 border hover:border-primary transition-colors duration-300 shadow-md transform -translate-y-1/2 bg-white size-10 rounded-full`}
-          onClick={handleScrollToX("right")}
-        >
-          <div className="h-full flex justify-center items-center">
-            <IconSvg name="next" />
+        {data.length > 6 && (
+          <div
+            className={`cursor-pointer absolute top-[55%]  -right-4 border hover:border-primary transition-colors duration-300 shadow-md transform -translate-y-1/2 bg-white size-10 rounded-full`}
+            onClick={handleScrollToX("right")}
+          >
+            <div className="h-full flex justify-center items-center">
+              <IconSvg name="next" />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

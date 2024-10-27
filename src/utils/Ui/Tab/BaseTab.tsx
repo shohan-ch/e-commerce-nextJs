@@ -33,7 +33,9 @@ const BaseTab = (props: Props) => {
                 onClick={handleSelectTab(index + 1)}
                 key={index}
                 className={` ${
-                  selectedTab == index + 1 ? "border-b-2 border-primary" : ""
+                  selectedTab == index + 1
+                    ? "border-b-2 font-medium border-primary"
+                    : ""
                 } pb-5 text-lg `}
               >
                 {t}

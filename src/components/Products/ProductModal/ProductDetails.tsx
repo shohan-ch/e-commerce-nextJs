@@ -14,7 +14,7 @@ const ProductDetails = (props: Props) => {
 
   return (
     <div>
-      <h2 className="text-2xl">{data?.title}</h2>
+      <h2 className="text-2xl font-medium">{data?.title}</h2>
       <p className="text-gray-600 mt-3 mb-4">{data?.quantity}</p>
       <p>
         <span className="font-semibold mr-3">

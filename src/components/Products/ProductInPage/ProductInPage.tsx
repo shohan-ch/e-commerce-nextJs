@@ -25,7 +25,7 @@ const ProductInPage = (props: Props) => {
 
   return (
     <div>
-      <div className="lg:grid lg:grid-cols-5 xl:gap-14 gap-5 spce-y-5">
+      <div className="lg:grid lg:grid-cols-5 xl:gap-14 gap-5 spce-y-5 mt-8">
         <div className="col-span-3 flex flex-col-reverse xl:flex-row gap-5 ">
           <ImagePreview data={allImages} />
         </div>
@@ -44,6 +44,12 @@ const ProductInPage = (props: Props) => {
       </BaseTab>
 
       <BaseProductDetailsSlider title="Related products" data={products} />
+      <div className="pb-10">
+        <BaseProductDetailsSlider
+          title="Recently Viewed "
+          data={products.slice(0, 3)}
+        />
+      </div>
     </div>
   );
 };
