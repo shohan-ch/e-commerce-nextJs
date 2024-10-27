@@ -13,6 +13,7 @@ const CartItemsInDrawer = (props: Props) => {
   const { products } = props;
   const dispatchCart = useCartDispatch();
   const [subTotal, setSubTotal] = useState(0);
+  const [promoDiscount, setPromoDiscount] = useState(0);
 
   const removeCartItem = (product: any) => (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -35,13 +36,24 @@ const CartItemsInDrawer = (props: Props) => {
     products.map((p: any) => {
       subTotal += p.cart * p.salePrice;
     });
-    setSubTotal(subTotal);
-  }, []);
+    setSubTotal(subTotal - promoDiscount);
+
+    if (products.length == 0) {
+      setPromoDiscount(0);
+    }
+  }, [promoDiscount, products]);
+
+  const handlePromoCodeClick = (val: any) => {
+    alert("Congratulations you got discount.");
+    if (val) {
+      setPromoDiscount(10);
+    }
+  };
 
   return (
     <>
-      <div className="product-container max-h-[540px] overflow-y-auto py-8 px-5">
-        {products.length &&
+      <div className="product-container h-[540px] overflow-y-auto py-8 px-5 relative">
+        {(products.length > 0 &&
           products.map((p: any) => {
             return (
               <div
@@ -75,22 +87,54 @@ const CartItemsInDrawer = (props: Props) => {
                 </div>
               </div>
             );
-          })}
+          })) || (
+          <div>
+            <div className="text-center w-[20vw] absolute top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%]">
+              <Image
+                className="mx-auto"
+                src="/uploads/images/cart/empty-cart.webp"
+                alt="empty-cart"
+                width={190}
+                height={190}
+              />
+              <h3 className="font-semibold mb-2 text-2xl">
+                Your Cart is empty.
+              </h3>
+              <p className="text-gray-500 text-base">
+                Please add product to your cart list
+              </p>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="border-t absolute w-full left-0"></div>
-      <div className="checkout-container pt-5 px-5">
-        <div className="flex justify-between items-center mb-4">
-          <p className="text-base ">Promo Code:</p>
-          <div>
-            <BaseInputIcon
-              name="promocode"
-              placeHolder="Promo Code"
-              style="h-[35px] mb-0"
-              handleChange={(e) => console.log(e.target.value)}
-            />
+
+      <div className="checkout-container pt-5 px-5 ">
+        {products.length > 0 && (
+          <div className="flex justify-between items-center mb-6 mt-3">
+            <p className="text-base ">Promo Code:</p>
+            <div>
+              <BaseInputIcon
+                name="promocode"
+                placeHolder="Do you have promo Code?"
+                style="h-[35px] !mb-0"
+                handleClick={handlePromoCodeClick}
+              />
+            </div>
           </div>
-        </div>
+        )}
+
+        {promoDiscount != 0 && (
+          <div className="flex justify-between items-center">
+            <p className="text-base">Discount:</p>
+            <p className="font-bold">
+              <span className="text-2xl">৳</span>
+              {promoDiscount}
+            </p>
+          </div>
+        )}
+
         <div className="flex justify-between items-center">
           <p className="text-base font-bold">Subtotal:</p>
           <p className="font-bold">
@@ -99,7 +143,12 @@ const CartItemsInDrawer = (props: Props) => {
           </p>
         </div>
 
-        <button className="bg-primary w-full p-4 text-white mt-10 rounded font-bold">
+        <button
+          disabled={products.length == 0}
+          className={`${
+            products.length ? "bg-primary" : "bg-gray-300"
+          } w-full p-4 text-white mt-10 rounded font-bold`}
+        >
           Proceed To Checkout
         </button>
       </div>

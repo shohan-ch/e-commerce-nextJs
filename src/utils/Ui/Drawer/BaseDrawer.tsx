@@ -5,6 +5,7 @@ type Props = {
   title: string;
   children: React.ReactNode;
   placement?: "left" | "right";
+  handleClearAll?: () => void;
 };
 
 const icon = {
@@ -28,7 +29,7 @@ const icon = {
 };
 
 const BaseDrawer = (props: Props, ref: any) => {
-  const { children, title, placement = "right" } = props;
+  const { children, handleClearAll, title, placement = "right" } = props;
   const [visible, setVisible] = useState(true);
 
   const handleDrawer = () => {
@@ -41,6 +42,10 @@ const BaseDrawer = (props: Props, ref: any) => {
     };
   });
 
+  const handelClear = () => {
+    handleClearAll?.();
+  };
+
   return (
     <>
       <div
@@ -51,15 +56,23 @@ const BaseDrawer = (props: Props, ref: any) => {
       >
         <div
           onClick={(e) => e.stopPropagation()}
-          className={`${visible ? "w-[444px]" : "w-[0px]"} ${
-            placement + "-0"
-          } absolute h-full top-0 bg-white transition-all duration-700 ease-in-out`}
+          // className={`${visible ? "w-[444px]" : "w-[0px]"} ${
+          //   placement + "-0"
+          // } absolute h-full top-0 bg-white transition-all duration-700 ease-in-out`}
+          className={`${
+            visible ? "translate-x-0" : "translate-x-full"
+          } absolute w-full xl:w-[444px] right-0 h-full top-0 bg-white transition-transform duration-700 ease-in-out `}
         >
           <div className="drawer-content">
             <div className="drawer-header py-8 px-5 flex justify-between border-b">
               <span className="text-xl font-bold">{title}</span>
               <span className="flex gap-5 items-center">
-                <span>Clear All</span>
+                {handleClearAll && (
+                  <span className="cursor-pointer" onClick={handelClear}>
+                    Clear All
+                  </span>
+                )}
+
                 <button onClick={() => setVisible(false)}>
                   {icon.closeIcon}
                 </button>
