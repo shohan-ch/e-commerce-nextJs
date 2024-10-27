@@ -1,6 +1,7 @@
 "use client";
 import {
   getLocalStorageItem,
+  removeLocalStorageItem,
   setLocalStorage,
 } from "@/helpers/loaclStorageHelper";
 import React, { createContext, useContext, useReducer } from "react";
@@ -54,6 +55,11 @@ const cartReducer = (carts: any, action: any) => {
       filterStorage = filterStorage.filter((c: any) => c.cart != 0);
       setLocalStorage("cart", JSON.stringify(filterStorage));
       return filterStorage;
+    }
+
+    case "removeAll": {
+      const removeCarts = removeLocalStorageItem("cart");
+      return [];
     }
 
     default: {

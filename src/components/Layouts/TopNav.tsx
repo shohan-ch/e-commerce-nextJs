@@ -1,6 +1,6 @@
 "use client";
 
-import { useCart } from "@/context/CartContextProvider";
+import { useCart, useCartDispatch } from "@/context/CartContextProvider";
 import IconSvg from "@/icons/IconSvg";
 import BaseDrawer from "@/utils/Ui/Drawer/BaseDrawer";
 import React, { useEffect, useRef, useState } from "react";
@@ -10,6 +10,7 @@ type Props = {};
 
 const TopNav = (props: Props) => {
   const productsInCartContext = useCart();
+  const cartDispatch = useCartDispatch();
   const [cartCount, setCartCount] = useState(0);
   const drawerRef = useRef<any>(null);
   useEffect(() => {
@@ -22,6 +23,12 @@ const TopNav = (props: Props) => {
 
   const handleDrawerToogle = () => {
     drawerRef.current?.handleDrawer();
+  };
+
+  const handleClear = () => {
+    cartDispatch({
+      type: "removeAll",
+    });
   };
 
   return (
@@ -48,7 +55,11 @@ const TopNav = (props: Props) => {
           </button>
         </div>
       </nav>
-      <BaseDrawer title="Shopping cart" ref={drawerRef}>
+      <BaseDrawer
+        title="Shopping cart"
+        ref={drawerRef}
+        handleClearAll={handleClear}
+      >
         <CartItemsInDrawer products={productsInCartContext} />
       </BaseDrawer>
     </div>
