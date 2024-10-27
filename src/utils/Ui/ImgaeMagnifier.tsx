@@ -38,16 +38,18 @@ const ImgaeMagnifier = (props: Props) => {
   return (
     <>
       <div>
-        <Image
-          className="hover:cursor-pointer"
-          onMouseEnter={previewImageEnter}
-          onMouseMove={previewImageMove}
-          onMouseLeave={() => setShowMagnifier(false)}
-          src={src}
-          width={width}
-          height={height}
-          alt={alt || ""}
-        />
+        {showMagnifier && (
+          <Image
+            className="hover:cursor-pointer"
+            onMouseEnter={previewImageEnter}
+            onMouseMove={previewImageMove}
+            onMouseLeave={() => setShowMagnifier(false)}
+            src={src}
+            width={width}
+            height={height}
+            alt={alt || ""}
+          />
+        )}
 
         <div
           style={{

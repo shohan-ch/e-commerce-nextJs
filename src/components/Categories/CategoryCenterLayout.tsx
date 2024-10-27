@@ -22,8 +22,8 @@ const CategoryCenterLayout = (props: Props) => {
         </div>
         <div className=" w-full flex gap-x-14 mb-10 justify-center overflow-x-auto">
           {data &&
-            data.slice(0, 5).map((category: any) => (
-              <div className="text-center group">
+            data.slice(0, 5).map((category: any, index: number) => (
+              <div key={index} className="text-center group">
                 <input
                   className="peer appearance-none"
                   type="radio"

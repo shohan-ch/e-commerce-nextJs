@@ -25,10 +25,12 @@ const BaseProductDetailsSlider = (props: Props) => {
   };
 
   const scrollResetToBegining = () => {
-    const timeId = setTimeout(() => {
-      productDivRef.current.scrollLeft = 0;
-    }, 20000);
-    setTimeOutId(timeId);
+    if (productDivRef.current) {
+      const timeId = setTimeout(() => {
+        productDivRef.current.scrollLeft = 0;
+      }, 20000);
+      setTimeOutId(timeId);
+    }
   };
 
   const scrollStayInSamePosition = () => {
