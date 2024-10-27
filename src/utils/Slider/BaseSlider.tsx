@@ -63,9 +63,6 @@ const BaseSlider = (props: Props) => {
       setStartFrom(startFrom);
     }
   };
-  // console.log(length, "length");
-  // console.log(startFrom, "start from");
-  // console.log(screenSize, "size");
 
   return (
     <div className="flex gap-x-4 relative w-full">

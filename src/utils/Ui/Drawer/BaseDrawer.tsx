@@ -29,7 +29,7 @@ const icon = {
 
 const BaseDrawer = (props: Props, ref: any) => {
   const { children, handleClearAll, title, placement = "right" } = props;
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   const handleDrawer = () => {
     setVisible(!visible);

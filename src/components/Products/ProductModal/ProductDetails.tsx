@@ -8,6 +8,7 @@ type Props = {
 
 const ProductDetails = (props: Props) => {
   const { data } = props;
+  console.log(data, "pp");
 
   return (
     <div>
@@ -61,8 +62,8 @@ const ProductDetails = (props: Props) => {
         </span>
 
         <span>
-          <Link href={"/"} className="text-primary">
-            Read More
+          <Link href={"products/" + data?.id} className="text-primary">
+            Read More 123
           </Link>
         </span>
       </p>
