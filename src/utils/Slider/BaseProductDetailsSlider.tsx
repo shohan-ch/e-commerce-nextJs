@@ -25,7 +25,7 @@ const BaseProductDetailsSlider = (props: Props) => {
   };
 
   const scrollResetToBegining = () => {
-    if (productDivRef.current) {
+    if (productDivRef.current && productDivRef.current.scrollLeft) {
       const timeId = setTimeout(() => {
         productDivRef.current.scrollLeft = 0;
       }, 20000);
