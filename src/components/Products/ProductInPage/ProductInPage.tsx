@@ -7,7 +7,7 @@ import ProductDetails from "@/components/Products/ProductModal/ProductDetails";
 import BaseProductDetailsSlider from "@/utils/Slider/BaseProductDetailsSlider";
 import BaseTab from "@/utils/Ui/Tab/BaseTab";
 import Image from "next/image";
-import Breadcrumb from "@/utils/Ui/Breadcrumb/Breadcrumb";
+import BaseBreadcrumb from "@/utils/Ui/Breadcrumb/BaseBreadcrumb";
 
 type Props = {
   productId: number;
@@ -26,13 +26,14 @@ const ProductInPage = (props: Props) => {
 
   return (
     <div className="mt-8">
-      <Breadcrumb
+      <BaseBreadcrumb
         list={[
-          { link: "Home", title: "Home" },
-          { link: "sas", title: "Products" },
+          { icon: "home", link: "/", title: "Home" },
+          { title: "Products" },
+          { title: product?.title },
         ]}
       />
-      <div className="lg:grid lg:grid-cols-5 xl:gap-14 gap-5 spce-y-5">
+      <div className="lg:grid lg:grid-cols-5 xl:gap-14 gap-5 spce-y-5 mt-4">
         <div className="col-span-3 flex flex-col-reverse xl:flex-row gap-5 ">
           <ImagePreview data={allImages} />
         </div>
