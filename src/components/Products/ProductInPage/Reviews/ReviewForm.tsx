@@ -19,12 +19,36 @@ let icons = {
   ),
 };
 
+interface Form {
+  rating: number;
+  text: string;
+  files: [];
+}
 type Props = {};
 
 const ReviewForm = (props: Props) => {
+  const [form, setForm] = useState<Form>({
+    rating: 1,
+    text: "",
+    files: [],
+  });
   const [countStar, setCountStar] = useState<number>(1);
   const [isRatingConfirmed, setIsRatingConfirmed] = useState<boolean>(false);
 
+  const handleFormChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    if (e.target instanceof HTMLInputElement && e.target.files) {
+      setForm({ ...form, [name]: e.target.files });
+    } else {
+      setForm({ ...form, [name]: value });
+    }
+  };
+
+  const handleSubmit = () => {
+    alert(JSON.stringify(form));
+  };
   const handleCountStar = (count: number) => () => {
     if (!isRatingConfirmed) {
       setCountStar(count);
@@ -34,11 +58,13 @@ const ReviewForm = (props: Props) => {
   const handleConfirmedRating = (count: number) => () => {
     setIsRatingConfirmed(true);
     setCountStar(count);
+    setForm({ ...form, rating: count });
     setTimeout(() => {
       setIsRatingConfirmed(false);
     }, 1000);
   };
-  console.log(countStar);
+
+  // console.log(form);
 
   return (
     <div className="space-y-5">
@@ -64,9 +90,8 @@ const ReviewForm = (props: Props) => {
 
       <div className="space-y-3">
         <label htmlFor="text">Add a written review</label>
-
         <BaseTextArea
-          handleChange={(e) => console.log(e.target.value)}
+          handleChange={handleFormChange}
           name="text"
           placeHolder="Add a review"
           style="!border-primary"
@@ -75,17 +100,19 @@ const ReviewForm = (props: Props) => {
 
       <div className="space-y-3">
         <label htmlFor="photo">Add a photo or video</label>
-
         <BaseFileUpload
-          name="images"
-          handleChange={(e) => console.log(e.target.files)}
+          name="files"
+          handleChange={handleFormChange}
           labelTitle="Add photos or video"
           multiple={true}
           style="!border-primary"
         />
       </div>
 
-      <button className="bg-primary p-3 rounded-sm font-medium shadow-md text-white">
+      <button
+        onClick={handleSubmit}
+        className="bg-primary p-3 rounded-sm font-medium shadow-md text-white"
+      >
         Add Review
       </button>
     </div>
