@@ -24,6 +24,21 @@ const icons = {
       </svg>
     </>
   ),
+  rightArrow: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      className="bi bi-chevron-right"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
+      />
+    </svg>
+  ),
 };
 
 const BaseBreadcrumb = (props: Props) => {
@@ -32,23 +47,24 @@ const BaseBreadcrumb = (props: Props) => {
   return (
     <div className="flex gap-4">
       {list.map((l, index) => (
-        <>
-          <div key={index}>
-            <Link
-              className="flex items-center justify-center"
-              href={l.link ? l.link : ""}
+        <div key={index}>
+          <Link
+            className="flex items-center justify-center"
+            href={l.link ? l.link : ""}
+          >
+            <span className={`${l.icon && "mr-2"}`}>
+              {l.icon ? icons[l.icon] : ""}
+            </span>
+            <span
+              className={`flex gap-3 justify-center items-center ${
+                index == list.length - 1 ? "font-medium" : ""
+              }`}
             >
-              <span className={`${l.icon && "mr-2"}`}>
-                {l.icon ? icons[l.icon] : ""}
-              </span>
-              <span
-                className={`${index == list.length - 1 ? "font-medium" : ""}`}
-              >
-                {l.title}
-              </span>
-            </Link>
-          </div>
-        </>
+              <span>{l.title}</span>
+              {index != list.length - 1 && <span>{icons.rightArrow}</span>}
+            </span>
+          </Link>
+        </div>
       ))}
     </div>
   );

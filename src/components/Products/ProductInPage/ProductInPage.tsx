@@ -8,6 +8,9 @@ import BaseProductDetailsSlider from "@/utils/Slider/BaseProductDetailsSlider";
 import BaseTab from "@/utils/Ui/Tab/BaseTab";
 import Image from "next/image";
 import BaseBreadcrumb from "@/utils/Ui/Breadcrumb/BaseBreadcrumb";
+import Details from "./Details/Details";
+import DefaultDetails from "./Details/DefaultDetails";
+import Reviews from "./Reviews/Reviews";
 
 type Props = {
   productId: number;
@@ -22,6 +25,7 @@ const ProductInPage = (props: Props) => {
     setProduct(getProduct);
   }, []);
 
+  console.log(product, "ss");
   const allImages = product && [product.coverImage, ...product.images];
 
   return (
@@ -41,15 +45,19 @@ const ProductInPage = (props: Props) => {
           <ProductDetails data={product} />
         </div>
       </div>
-      <BaseTab title={["Product Details", "Review Rating"]}>
-        <div id="tab1">
-          <p>Lorem ipsum dolor</p>
-        </div>
-        <div id="tab2">
-          <h2>Id 2</h2>
-          <p className="bg-primary">Lorem ipsum dolor sit amet, consectetur</p>
-        </div>
-      </BaseTab>
+
+      {product && (
+        <BaseTab title={["Product Details", "Review Rating"]}>
+          <div id="tab1">
+            <Reviews reviews={product.reviews} />
+          </div>
+          <div id="tab2">
+            <Details
+              details={product?.details || <DefaultDetails product={product} />}
+            />
+          </div>
+        </BaseTab>
+      )}
 
       <BaseProductDetailsSlider title="Related products" data={products} />
       <div className="pb-10">

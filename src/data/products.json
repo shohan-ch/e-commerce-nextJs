@@ -10,8 +10,41 @@
     "https://chaldn.com/_mpimage/fresh-super-premium-vacuum-salt-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D128654&q=best&v=1&m=400&webp=1",
     "https://chaldn.com/_mpimage/chola-boot-chick-peas-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D126716&q=best&v=1&m=400&webp=1"
   
-  ]
+  ],
 
+  "reviews":[
+    {
+      "rating":4,
+      "text": "Good Product",
+      "images":["https://chaldn.com/_mpimage/rupchanda-fortified-soyabean-oil-5-ltr?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D137237&q=best&v=1&m=400&webp=1", "https://chaldn.com/_mpimage/chola-boot-chick-peas-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D126716&q=best&v=1&m=400&webp=1"],
+      "user":{
+        "id":1,
+        "name":"shohan"
+      }
+
+    },
+    {
+      "rating":5,
+      "text": "Excellent product to buy. Recommended",
+      "images":["https://chaldn.com/_mpimage/rupchanda-fortified-soyabean-oil-5-ltr?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D137237&q=best&v=1&m=400&webp=1"],
+      "user":{
+        "id":2,
+        "name":"xyz"
+      }
+
+    },
+    {
+      "rating":1,
+      "text": "bad",
+      "images":["https://chaldn.com/_mpimage/rupchanda-fortified-soyabean-oil-5-ltr?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D137237&q=best&v=1&m=400&webp=1"],
+      "user":{
+        "id":1,
+        "name":"shohan"
+      }
+
+    }
+
+  ]
 
 },
 {
@@ -27,8 +60,41 @@
     "https://chaldn.com/_mpimage/chola-boot-chick-peas-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D126716&q=best&v=1&m=400&webp=1",
     "https://chaldn.com/_mpimage/shagor-kola-banana-sagor-4-pcs?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D76879&q=best&v=1&m=400&webp=1",
     "https://chaldn.com/_mpimage/fresh-super-premium-vacuum-salt-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D128654&q=best&v=1&m=400&webp=1"
-  ] 
+  ], 
 
+  "reviews":[
+    {
+      "rating":3,
+      "text": "Good Product",
+      "images":["https://chaldn.com/_mpimage/rupchanda-fortified-soyabean-oil-5-ltr?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D137237&q=best&v=1&m=400&webp=1"],
+      "user":{
+        "id":1,
+        "name":"shohan"
+      }
+
+    },
+    {
+      "rating":2,
+      "text": "Excellent product to buy. Recommended",
+      "images":["https://chaldn.com/_mpimage/rupchanda-fortified-soyabean-oil-5-ltr?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D137237&q=best&v=1&m=400&webp=1"],
+      "user":{
+        "id":2,
+        "name":"xyz"
+      }
+
+    },
+    {
+      "rating":5,
+      "text": "bad",
+      "images":["https://chaldn.com/_mpimage/rupchanda-fortified-soyabean-oil-5-ltr?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D137237&q=best&v=1&m=400&webp=1"],
+      "user":{
+        "id":1,
+        "name":"shohan"
+      }
+
+    }
+
+  ]
 },
 {
   "id":3,
