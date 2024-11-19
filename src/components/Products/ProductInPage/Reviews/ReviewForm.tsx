@@ -112,7 +112,7 @@ const ReviewForm = (props: Props) => {
           handleChange={handleFormChange}
           labelTitle="Add photos or video"
           multiple={true}
-          style="!border-primary"
+          style="!border-primary rounded-lg !border-solid"
           isSubmited={isSubmited}
         />
       </div>

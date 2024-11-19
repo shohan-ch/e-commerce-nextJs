@@ -22,7 +22,7 @@ const ProductModal = (props: Props) => {
           <ImagePreview data={allImages} />
         </div>
         <div className="col-span-2 xl:h-[50.5vh]">
-          <ProductDetails data={data} />
+          <ProductDetails product={data} />
         </div>
       </div>
       <BaseProductDetailsSlider title="Related products" data={products} />

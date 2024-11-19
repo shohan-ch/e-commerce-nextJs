@@ -6,7 +6,6 @@ type Props = {
 
 const DefaultDetails = (props: Props) => {
   const { product } = props;
-  console.log(product, "cas");
 
   return (
     <>
