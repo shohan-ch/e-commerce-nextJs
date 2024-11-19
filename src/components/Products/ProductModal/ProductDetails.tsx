@@ -1,5 +1,6 @@
 import IconSvg from "@/icons/IconSvg";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 type Props = {
@@ -8,11 +9,12 @@ type Props = {
 
 const ProductDetails = (props: Props) => {
   const { data } = props;
-  console.log(data, "pp");
+  const path = usePathname();
+  const isProductInPage = path.includes("/products/");
 
   return (
     <div>
-      <h2 className="text-base">{data?.title}</h2>
+      <h2 className="text-2xl font-medium">{data?.title}</h2>
       <p className="text-gray-600 mt-3 mb-4">{data?.quantity}</p>
       <p>
         <span className="font-semibold mr-3">
@@ -43,30 +45,35 @@ const ProductDetails = (props: Props) => {
         </button>
       </div>
 
-      <p className="font-bold text-base mb-3">Product Details:</p>
-      <p>
-        <span className="line-clamp-5 text-pretty leading-7">
-          {data?.details}
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          fugit inventore incidunt earum dolorum aliquid aspernatur repudiandae
-          blanditiis ipsa, necessitatibus nihil nesciunt hic tempore eaque
-          consequuntur praesentium iure non natus deserunt reprehenderit quos
-          rem fuga sequi! Nobis cum, doloribus quia eligendi, porro nesciunt
-          voluptates explicabo voluptas dolores blanditiis quod consequuntur sit
-          sint distinctio vel totam, nihil obcaecati impedit nisi eaque
-          reiciendis sequi. Beatae illum architecto reprehenderit fuga quae
-          explicabo odio maxime quo ipsa omnis qui nemo suscipit dolorum vero
-          eius saepe cupiditate laudantium nisi, cum consectetur possimus?
-          Temporibus quo accusantium expedita repellendus a, amet distinctio
-          voluptatibus non nostrum sint qui!
-        </span>
+      {!isProductInPage && (
+        <div>
+          <p className="font-bold text-base mb-3">Product Details:</p>
+          <p>
+            <span className="line-clamp-5 text-pretty leading-7">
+              {data?.details}
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+              fugit inventore incidunt earum dolorum aliquid aspernatur
+              repudiandae blanditiis ipsa, necessitatibus nihil nesciunt hic
+              tempore eaque consequuntur praesentium iure non natus deserunt
+              reprehenderit quos rem fuga sequi! Nobis cum, doloribus quia
+              eligendi, porro nesciunt voluptates explicabo voluptas dolores
+              blanditiis quod consequuntur sit sint distinctio vel totam, nihil
+              obcaecati impedit nisi eaque reiciendis sequi. Beatae illum
+              architecto reprehenderit fuga quae explicabo odio maxime quo ipsa
+              omnis qui nemo suscipit dolorum vero eius saepe cupiditate
+              laudantium nisi, cum consectetur possimus? Temporibus quo
+              accusantium expedita repellendus a, amet distinctio voluptatibus
+              non nostrum sint qui!
+            </span>
 
-        <span>
-          <Link href={"products/" + data?.id} className="text-primary">
-            Read More 123
-          </Link>
-        </span>
-      </p>
+            <span>
+              <Link href={"products/" + data?.id} className="text-primary">
+                Read More
+              </Link>
+            </span>
+          </p>
+        </div>
+      )}
     </div>
   );
 };

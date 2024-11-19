@@ -67,15 +67,6 @@ const ImagePreview = (props: Props) => {
           height={300}
         />
 
-        {/* <Image
-          onMouseMove={() => console.log("s")}
-          src={previewImage}
-          alt={previewImage}
-          width={300}
-          height={300}
-          className="transition-all duration-300 ease-in"
-        /> */}
-
         {/* Next Prev Buttons */}
 
         {imageIndex != 0 && (
