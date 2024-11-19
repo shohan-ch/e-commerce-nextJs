@@ -19,7 +19,7 @@ let icons = {
   ),
 };
 
-interface Form {
+interface IForm {
   rating: number;
   text: string;
   files: [];
@@ -27,11 +27,12 @@ interface Form {
 type Props = {};
 
 const ReviewForm = (props: Props) => {
-  const [form, setForm] = useState<Form>({
+  const [formData, setFormData] = useState<IForm | any>({
     rating: 1,
     text: "",
     files: [],
   });
+  const [isSubmited, setIsSubmited] = useState<boolean>(false);
   const [countStar, setCountStar] = useState<number>(1);
   const [isRatingConfirmed, setIsRatingConfirmed] = useState<boolean>(false);
 
@@ -40,14 +41,21 @@ const ReviewForm = (props: Props) => {
   ) => {
     const { name, value } = e.target;
     if (e.target instanceof HTMLInputElement && e.target.files) {
-      setForm({ ...form, [name]: e.target.files });
+      setFormData({ ...formData, [name]: e.target.files });
     } else {
-      setForm({ ...form, [name]: value });
+      setFormData({ ...formData, [name]: value });
     }
   };
 
   const handleSubmit = () => {
-    alert(JSON.stringify(form));
+    console.log(formData, "submit");
+    setIsSubmited(true);
+    setCountStar(1);
+    setFormData({
+      rating: 1,
+      text: "",
+      files: [],
+    });
   };
   const handleCountStar = (count: number) => () => {
     if (!isRatingConfirmed) {
@@ -58,13 +66,11 @@ const ReviewForm = (props: Props) => {
   const handleConfirmedRating = (count: number) => () => {
     setIsRatingConfirmed(true);
     setCountStar(count);
-    setForm({ ...form, rating: count });
+    setFormData({ ...formData, rating: count });
     setTimeout(() => {
       setIsRatingConfirmed(false);
     }, 1000);
   };
-
-  // console.log(form);
 
   return (
     <div className="space-y-5">
@@ -95,6 +101,7 @@ const ReviewForm = (props: Props) => {
           name="text"
           placeHolder="Add a review"
           style="!border-primary"
+          value={formData.text}
         />
       </div>
 
@@ -106,6 +113,7 @@ const ReviewForm = (props: Props) => {
           labelTitle="Add photos or video"
           multiple={true}
           style="!border-primary"
+          isSubmited={isSubmited}
         />
       </div>
 

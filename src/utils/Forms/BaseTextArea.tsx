@@ -5,10 +5,11 @@ interface InputProps {
   placeHolder?: string;
   style?: string;
   label?: string;
+  value?: string;
 }
 
 const BaseTextArea: React.FC<InputProps> = (props) => {
-  const { handleChange, name, placeHolder, style, label } = props;
+  const { handleChange, value, name, placeHolder, style, label } = props;
 
   return (
     <>
@@ -23,6 +24,7 @@ const BaseTextArea: React.FC<InputProps> = (props) => {
         )}
 
         <textarea
+          value={value && value}
           onChange={handleChange}
           rows={4}
           name={name}

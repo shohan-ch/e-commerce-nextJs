@@ -25,7 +25,6 @@ const ProductInPage = (props: Props) => {
     setProduct(getProduct);
   }, []);
 
-  console.log(product, "ss");
   const allImages = product && [product.coverImage, ...product.images];
 
   return (
