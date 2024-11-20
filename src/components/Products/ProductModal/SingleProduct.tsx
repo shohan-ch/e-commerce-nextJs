@@ -2,7 +2,7 @@ import ProductCartPanel from "@/components/Cart/ProductCartPanel";
 import { useCart, useCartDispatch } from "@/context/CartContextProvider";
 import IconSvg from "@/icons/IconSvg";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 type Props = {
   product: any;
@@ -19,10 +19,9 @@ const SingleProduct = (props: Props) => {
       let isExistProductInCart = productsInCartContext.some(
         (p: any) => p.id == product.id
       );
-      console.log(isExistProductInCart);
       isExistProductInCart && setIsVisibleCartContainer(true);
     }
-  }, []);
+  }, [productsInCartContext]);
 
   const cartCountOnProduct = (id: number) => {
     if (id) {
