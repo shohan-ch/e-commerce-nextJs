@@ -21,7 +21,7 @@ const ProductModal = (props: Props) => {
         <div className="col-span-3 flex flex-col-reverse xl:flex-row gap-5 ">
           <ImagePreview data={allImages} />
         </div>
-        <div className="col-span-2 xl:h-[50.5vh]">
+        <div className="col-span-2 xl:h-[60.5vh]">
           <ProductDetails product={data} />
         </div>
       </div>

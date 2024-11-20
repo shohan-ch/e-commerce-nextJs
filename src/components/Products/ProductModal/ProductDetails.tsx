@@ -63,6 +63,13 @@ const ProductDetails = (props: Props) => {
           </span>
           Add to Cart
         </button>
+
+        <button className="bg-secondary  py-3 text-white w-full mt-4 rounded flex gap-x-3 items-center justify-center">
+          <span>
+            <IconSvg name="cart2" />
+          </span>
+          Buy Now
+        </button>
       </div>
 
       {!isProductInPage && (
