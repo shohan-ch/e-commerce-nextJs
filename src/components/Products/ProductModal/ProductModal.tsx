@@ -9,10 +9,11 @@ import BaseProductDetailsSlider from "@/utils/Slider/BaseProductDetailsSlider";
 
 type Props = {
   data: any;
+  toogleModal?: (id: number | undefined) => void;
 };
 
 const ProductModal = (props: Props) => {
-  const { data } = props;
+  const { data, toogleModal } = props;
   const allImages = data && [data.coverImage, ...data.images];
 
   return (
@@ -22,7 +23,7 @@ const ProductModal = (props: Props) => {
           <ImagePreview data={allImages} />
         </div>
         <div className="col-span-2 xl:h-[60.5vh]">
-          <ProductDetails product={data} />
+          <ProductDetails product={data} toogleModal={toogleModal} />
         </div>
       </div>
       <BaseProductDetailsSlider title="Related products" data={products} />

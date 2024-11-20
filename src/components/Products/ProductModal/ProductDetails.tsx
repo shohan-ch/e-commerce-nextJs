@@ -1,22 +1,24 @@
 import { useCart, useCartDispatch } from "@/context/CartContextProvider";
+import { useDrawerContext } from "@/context/DrawerContextProvider";
 import IconSvg from "@/icons/IconSvg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 
 type Props = {
   product: any;
+  toogleModal?: (id: number) => void;
 };
 
 const ProductDetails = (props: Props) => {
-  const { product } = props;
+  const { product, toogleModal } = props;
   const path = usePathname();
   const isProductInPage = path.includes("/products/");
   const cartInContext = useCart();
   const dispatchCart = useCartDispatch();
-
+  const { handleShowByDrawerContext } = useDrawerContext();
   const productInCart = useMemo(() => {
-    return cartInContext.find((c: any) => c.id == product?.id);
+    return cartInContext.find((c: any) => c?.id == product?.id);
   }, [cartInContext]);
 
   const handleAddInCart = () => {
@@ -31,7 +33,20 @@ const ProductDetails = (props: Props) => {
       product,
     });
   };
+  const handleAddCart = () => {
+    handleShowByDrawerContext();
 
+    if (toogleModal) {
+      toogleModal(product.id);
+    }
+
+    if (!productInCart) {
+      dispatchCart({
+        type: "add",
+        product: { ...product, cart: 1 },
+      });
+    }
+  };
   return (
     <div>
       <h2 className="text-2xl font-medium">{product?.title}</h2>
@@ -57,7 +72,10 @@ const ProductDetails = (props: Props) => {
           </button>
         </div>
 
-        <button className="bg-primary  py-3 text-white w-full mt-4 rounded flex gap-x-3 items-center justify-center">
+        <button
+          onClick={handleAddCart}
+          className="bg-primary  py-3 text-white w-full mt-4 rounded flex gap-x-3 items-center justify-center"
+        >
           <span>
             <IconSvg name="cart2" />
           </span>
@@ -66,7 +84,7 @@ const ProductDetails = (props: Props) => {
 
         <button className="bg-secondary  py-3 text-white w-full mt-4 rounded flex gap-x-3 items-center justify-center">
           <span>
-            <IconSvg name="cart2" />
+            <IconSvg name="bag" />
           </span>
           Buy Now
         </button>

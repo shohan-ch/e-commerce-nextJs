@@ -1,23 +1,26 @@
 "use client";
 
 import { useCart, useCartDispatch } from "@/context/CartContextProvider";
+import { useDrawerContext } from "@/context/DrawerContextProvider";
 import IconSvg from "@/icons/IconSvg";
 import BaseDrawer from "@/utils/Ui/Drawer/BaseDrawer";
-import React, { useEffect, useRef, useState } from "react";
-import CartItemsInDrawer from "../Cart/CartItemsInDrawer";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import CartItemsInDrawer from "../Cart/CartItemsInDrawer";
 
 type Props = {};
 
 const TopNav = (props: Props) => {
   const productsInCartContext = useCart();
   const cartDispatch = useCartDispatch();
+  const { isVisibleByDrawerContext, handleHideByDrawerContext } =
+    useDrawerContext();
   const [cartCount, setCartCount] = useState(0);
   const drawerRef = useRef<any>(null);
   useEffect(() => {
     let cartCount = 0;
     productsInCartContext.map((p: any) => {
-      cartCount += p.cart;
+      cartCount += p?.cart;
     });
     setCartCount(cartCount);
   });
@@ -30,6 +33,19 @@ const TopNav = (props: Props) => {
     cartDispatch({
       type: "removeAll",
     });
+  };
+
+  useEffect(() => {
+    if (isVisibleByDrawerContext) {
+      drawerRef.current?.handleDrawer();
+    }
+  }, [isVisibleByDrawerContext]);
+
+  console.log(isVisibleByDrawerContext, "nav");
+
+  const handleHideDrawer = () => {
+    handleHideByDrawerContext();
+    return false;
   };
 
   return (
@@ -62,6 +78,7 @@ const TopNav = (props: Props) => {
         title="Shopping cart"
         ref={drawerRef}
         handleClearAll={handleClear}
+        handleHideDrawer={handleHideDrawer}
       >
         <CartItemsInDrawer products={productsInCartContext} />
       </BaseDrawer>

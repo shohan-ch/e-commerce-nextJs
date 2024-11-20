@@ -17,7 +17,7 @@ const SingleProduct = (props: Props) => {
   useEffect(() => {
     if (productsInCartContext.length > 0) {
       let isExistProductInCart = productsInCartContext.some(
-        (p: any) => p.id == product.id
+        (p: any) => p?.id == product.id
       );
       isExistProductInCart && setIsVisibleCartContainer(true);
     }

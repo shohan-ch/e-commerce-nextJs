@@ -5,6 +5,7 @@ type Props = {
   children: React.ReactNode;
   placement?: "left" | "right";
   handleClearAll?: () => void;
+  handleHideDrawer?: () => boolean;
 };
 
 const icon = {
@@ -28,7 +29,13 @@ const icon = {
 };
 
 const BaseDrawer = (props: Props, ref: any) => {
-  const { children, handleClearAll, title, placement = "right" } = props;
+  const {
+    children,
+    handleHideDrawer,
+    handleClearAll,
+    title,
+    placement = "right",
+  } = props;
   const [visible, setVisible] = useState(false);
 
   const handleDrawer = () => {
@@ -45,22 +52,27 @@ const BaseDrawer = (props: Props, ref: any) => {
     handleClearAll?.();
   };
 
+  const handleHide = () => {
+    if (handleHideDrawer) {
+      let setFalse = handleHideDrawer();
+      setVisible(setFalse);
+    }
+  };
+
   return (
     <>
       <div
-        onClick={() => setVisible(false)}
+        // onClick={() => setVisible(false)}
+        onClick={handleHideDrawer ? handleHide : () => setVisible(false)}
         className={`${
           visible ? "opacity-100" : "opacity-0 pointer-events-none "
         } fixed h-screen transition-all duration-300 bg-gray-800 bg-opacity-60 z-50 w-full`}
       >
         <div
           onClick={(e) => e.stopPropagation()}
-          // className={`${visible ? "w-[444px]" : "w-[0px]"} ${
-          //   placement + "-0"
-          // } absolute h-full top-0 bg-white transition-all duration-700 ease-in-out`}
           className={`${
             visible ? "translate-x-0" : "translate-x-full"
-          } absolute w-full xl:w-[444px] right-0 h-full top-0 bg-white transition-transform duration-700 ease-in-out `}
+          } absolute w-full xl:w-[400px] right-0 h-full top-0 bg-white transition-transform duration-700 ease-in-out `}
         >
           <div className="drawer-content">
             <div className="drawer-header py-8 px-5 flex justify-between border-b">
@@ -72,7 +84,11 @@ const BaseDrawer = (props: Props, ref: any) => {
                   </span>
                 )}
 
-                <button onClick={() => setVisible(false)}>
+                <button
+                  onClick={
+                    handleHideDrawer ? handleHide : () => setVisible(false)
+                  }
+                >
                   {icon.closeIcon}
                 </button>
               </span>
