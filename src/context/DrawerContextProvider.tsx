@@ -10,10 +10,10 @@ interface IDrawer {
 export const DrawerContextProvider = (props: IDrawer) => {
   const { children } = props;
   const [visible, setVisible] = useState(false);
-  const handleShowByDrawerContext = () => {
+  const handleShowDrawerByContext = () => {
     setVisible(true);
   };
-  const handleHideByDrawerContext = () => {
+  const handleHideDrawerByContext = () => {
     setVisible(false);
   };
 
@@ -21,9 +21,9 @@ export const DrawerContextProvider = (props: IDrawer) => {
     <>
       <DrawerContext.Provider
         value={{
-          isVisibleByDrawerContext: visible,
-          handleShowByDrawerContext,
-          handleHideByDrawerContext,
+          isVisibleDrawerByContext: visible,
+          handleShowDrawerByContext,
+          handleHideDrawerByContext,
         }}
       >
         {children}

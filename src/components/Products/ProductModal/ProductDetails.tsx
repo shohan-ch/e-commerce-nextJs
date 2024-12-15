@@ -16,7 +16,11 @@ const ProductDetails = (props: Props) => {
   const isProductInPage = path.includes("/products/");
   const cartInContext = useCart();
   const dispatchCart = useCartDispatch();
-  const { handleShowByDrawerContext } = useDrawerContext();
+  const {
+    handleShowDrawerByContext,
+    isVisibleDrawerByContext,
+    handleHideDrawerByContext,
+  } = useDrawerContext();
   const productInCart = useMemo(() => {
     return cartInContext.find((c: any) => c?.id == product?.id);
   }, [cartInContext]);
@@ -34,7 +38,12 @@ const ProductDetails = (props: Props) => {
     });
   };
   const handleAddCart = () => {
-    handleShowByDrawerContext();
+    if (!isVisibleDrawerByContext) {
+      handleShowDrawerByContext();
+    } else {
+      handleHideDrawerByContext();
+    }
+    // handleShowDrawerByContext();
 
     if (toogleModal) {
       toogleModal(product.id);
@@ -79,7 +88,7 @@ const ProductDetails = (props: Props) => {
           <span>
             <IconSvg name="cart2" />
           </span>
-          Add to Cart
+          Add to Cart123
         </button>
 
         <button className="bg-secondary  py-3 text-white w-full mt-4 rounded flex gap-x-3 items-center justify-center">

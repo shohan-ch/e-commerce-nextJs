@@ -13,10 +13,14 @@ type Props = {};
 const TopNav = (props: Props) => {
   const productsInCartContext = useCart();
   const cartDispatch = useCartDispatch();
-  const { isVisibleByDrawerContext, handleHideByDrawerContext } =
-    useDrawerContext();
+  const {
+    isVisibleDrawerByContext,
+    handleHideDrawerByContext,
+    handleShowDrawerByContext,
+  } = useDrawerContext();
   const [cartCount, setCartCount] = useState(0);
   const drawerRef = useRef<any>(null);
+  const initialMountRef = useRef(false);
   useEffect(() => {
     let cartCount = 0;
     productsInCartContext.map((p: any) => {
@@ -36,15 +40,14 @@ const TopNav = (props: Props) => {
   };
 
   useEffect(() => {
-    if (isVisibleByDrawerContext) {
+    if (initialMountRef.current) {
       drawerRef.current?.handleDrawer();
     }
-  }, [isVisibleByDrawerContext]);
-
-  console.log(isVisibleByDrawerContext, "nav");
+    initialMountRef.current = true;
+  }, [isVisibleDrawerByContext]);
 
   const handleHideDrawer = () => {
-    handleHideByDrawerContext();
+    handleHideDrawerByContext();
     return false;
   };
 

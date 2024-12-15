@@ -1,8 +1,11 @@
+"use client";
+
 import { useCartDispatch } from "@/context/CartContextProvider";
+import { useDrawerContext } from "@/context/DrawerContextProvider";
 import IconSvg from "@/icons/IconSvg";
-import BaseInput from "@/utils/Forms/BaseInput";
 import BaseInputIcon from "@/utils/Forms/BaseInputIcon";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 type Props = {
@@ -14,6 +17,13 @@ const CartItemsInDrawer = (props: Props) => {
   const dispatchCart = useCartDispatch();
   const [subTotal, setSubTotal] = useState(0);
   const [promoDiscount, setPromoDiscount] = useState(0);
+  const router = useRouter();
+
+  const {
+    handleHideDrawerByContext,
+    handleShowDrawerByContext,
+    isVisibleDrawerByContext,
+  } = useDrawerContext();
 
   const removeCartItem = (product: any) => (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -48,6 +58,15 @@ const CartItemsInDrawer = (props: Props) => {
     if (val) {
       setPromoDiscount(10);
     }
+  };
+
+  const redirectToCheckoutPage = () => {
+    if (!isVisibleDrawerByContext) {
+      handleShowDrawerByContext();
+    } else {
+      handleHideDrawerByContext();
+    }
+    router.push("/checkout");
   };
 
   return (
@@ -148,6 +167,7 @@ const CartItemsInDrawer = (props: Props) => {
           className={`${
             products.length ? "bg-primary" : "bg-gray-300"
           } w-full p-4 text-white mt-10 rounded font-bold`}
+          onClick={redirectToCheckoutPage}
         >
           Proceed To Checkout
         </button>
