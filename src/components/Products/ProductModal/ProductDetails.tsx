@@ -1,47 +1,92 @@
+import { useCart, useCartDispatch } from "@/context/CartContextProvider";
+import { useDrawerContext } from "@/context/DrawerContextProvider";
 import IconSvg from "@/icons/IconSvg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import { useMemo } from "react";
 
 type Props = {
-  data: any;
+  product: any;
+  toogleModal?: (id: number) => void;
 };
 
 const ProductDetails = (props: Props) => {
-  const { data } = props;
+  const { product, toogleModal } = props;
   const path = usePathname();
   const isProductInPage = path.includes("/products/");
+  const cartInContext = useCart();
+  const dispatchCart = useCartDispatch();
+  const { handleShowByDrawerContext } = useDrawerContext();
+  const productInCart = useMemo(() => {
+    return cartInContext.find((c: any) => c?.id == product?.id);
+  }, [cartInContext]);
 
+  const handleAddInCart = () => {
+    dispatchCart({
+      type: "add",
+      product: { ...product, cart: 1 },
+    });
+  };
+  const handleRemoveCart = () => {
+    dispatchCart({
+      type: "remove",
+      product,
+    });
+  };
+  const handleAddCart = () => {
+    handleShowByDrawerContext();
+
+    if (toogleModal) {
+      toogleModal(product.id);
+    }
+
+    if (!productInCart) {
+      dispatchCart({
+        type: "add",
+        product: { ...product, cart: 1 },
+      });
+    }
+  };
   return (
     <div>
-      <h2 className="text-2xl font-medium">{data?.title}</h2>
-      <p className="text-gray-600 mt-3 mb-4">{data?.quantity}</p>
+      <h2 className="text-2xl font-medium">{product?.title}</h2>
+      <p className="text-gray-600 mt-3 mb-4">{product?.quantity}</p>
       <p>
         <span className="font-semibold mr-3">
           {" "}
           <span className="text-2xl">৳</span>
-          {data?.salePrice}
+          {product?.salePrice}
         </span>
         <span className="text-2xl mr-1">৳</span>
-        <span className="line-through">{data?.price}</span>
+        <span className="line-through">{product?.price}</span>
       </p>
 
       <div id="cartDiv" className="mb-10 mt-4">
         <div className="bg-gray-100 rounded py-3  flex gap-x-10 items-center justify-center">
-          <button>
+          <button onClick={handleRemoveCart}>
             <IconSvg name="minus" />
           </button>
-          <span className="text-2xl">1</span>
-          <button>
+          <span className="text-2xl">{productInCart?.cart || 0}</span>
+          <button onClick={handleAddInCart}>
             <IconSvg name="plus" color="black" />
           </button>
         </div>
 
-        <button className="bg-primary  py-3 text-white w-full mt-4 rounded flex gap-x-3 items-center justify-center">
+        <button
+          onClick={handleAddCart}
+          className="bg-primary  py-3 text-white w-full mt-4 rounded flex gap-x-3 items-center justify-center"
+        >
           <span>
             <IconSvg name="cart2" />
           </span>
           Add to Cart
+        </button>
+
+        <button className="bg-secondary  py-3 text-white w-full mt-4 rounded flex gap-x-3 items-center justify-center">
+          <span>
+            <IconSvg name="bag" />
+          </span>
+          Buy Now
         </button>
       </div>
 
@@ -50,7 +95,7 @@ const ProductDetails = (props: Props) => {
           <p className="font-bold text-base mb-3">Product Details:</p>
           <p>
             <span className="line-clamp-5 text-pretty leading-7">
-              {data?.details}
+              {product?.details}
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
               fugit inventore incidunt earum dolorum aliquid aspernatur
               repudiandae blanditiis ipsa, necessitatibus nihil nesciunt hic
@@ -67,7 +112,7 @@ const ProductDetails = (props: Props) => {
             </span>
 
             <span>
-              <Link href={"products/" + data?.id} className="text-primary">
+              <Link href={"products/" + product?.id} className="text-primary">
                 Read More
               </Link>
             </span>

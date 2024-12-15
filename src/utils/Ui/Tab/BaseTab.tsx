@@ -10,8 +10,6 @@ const BaseTab = (props: Props) => {
   const [selectedTab, setSelectedTab] = useState(1);
   const [selectedNode, setSelectedNode] = useState<any>();
 
-  console.log(children);
-
   useEffect(() => {
     let reactNode = children.find(
       (t: any) => t.props.id == "tab" + selectedTab.toString()

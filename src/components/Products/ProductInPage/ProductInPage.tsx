@@ -1,15 +1,14 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useState } from "react";
-import products from "../../../data/products.json";
 import ImagePreview from "@/components/Products/ProductModal/ImagePreview";
 import ProductDetails from "@/components/Products/ProductModal/ProductDetails";
 import BaseProductDetailsSlider from "@/utils/Slider/BaseProductDetailsSlider";
-import BaseTab from "@/utils/Ui/Tab/BaseTab";
-import Image from "next/image";
 import BaseBreadcrumb from "@/utils/Ui/Breadcrumb/BaseBreadcrumb";
-import Details from "./Details/Details";
+import BaseTab from "@/utils/Ui/Tab/BaseTab";
+import { useEffect, useState } from "react";
+import products from "../../../data/products.json";
 import DefaultDetails from "./Details/DefaultDetails";
+import Details from "./Details/Details";
 import Reviews from "./Reviews/Reviews";
 
 type Props = {
@@ -41,19 +40,19 @@ const ProductInPage = (props: Props) => {
           <ImagePreview data={allImages} />
         </div>
         <div className="col-span-2 xl:h-[50.5vh]">
-          <ProductDetails data={product} />
+          <ProductDetails product={product} />
         </div>
       </div>
 
       {product && (
         <BaseTab title={["Product Details", "Review Rating"]}>
           <div id="tab1">
-            <Reviews reviews={product.reviews} />
-          </div>
-          <div id="tab2">
             <Details
               details={product?.details || <DefaultDetails product={product} />}
             />
+          </div>
+          <div id="tab2">
+            <Reviews reviews={product.reviews} />
           </div>
         </BaseTab>
       )}

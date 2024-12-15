@@ -26,7 +26,7 @@ const HomeProducts = (props: Props) => {
   return (
     <>
       <BaseModal ref={modalRef} width="large" position="top">
-        <ProductModal data={filterProduct} />
+        <ProductModal data={filterProduct} toogleModal={handleModalShow} />
       </BaseModal>
 
       <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-4">

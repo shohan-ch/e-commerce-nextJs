@@ -5,6 +5,7 @@ import IconSvg from "@/icons/IconSvg";
 import Footer from "@/components/Layouts/Footer";
 import TopNav from "@/components/Layouts/TopNav";
 import { CartContextProvider } from "@/context/CartContextProvider";
+import { DrawerContextProvider } from "@/context/DrawerContextProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,11 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <CartContextProvider>
-          <TopNav />
-          <main className="px-10 pt-20">{children}</main>
-          <Footer />
-        </CartContextProvider>
+        <DrawerContextProvider>
+          <CartContextProvider>
+            <TopNav />
+            <main className="px-10 pt-20">{children}</main>
+            <Footer />
+          </CartContextProvider>
+        </DrawerContextProvider>
       </body>
     </html>
   );

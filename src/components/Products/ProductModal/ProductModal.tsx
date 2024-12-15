@@ -9,10 +9,11 @@ import BaseProductDetailsSlider from "@/utils/Slider/BaseProductDetailsSlider";
 
 type Props = {
   data: any;
+  toogleModal?: (id: number | undefined) => void;
 };
 
 const ProductModal = (props: Props) => {
-  const { data } = props;
+  const { data, toogleModal } = props;
   const allImages = data && [data.coverImage, ...data.images];
 
   return (
@@ -21,8 +22,8 @@ const ProductModal = (props: Props) => {
         <div className="col-span-3 flex flex-col-reverse xl:flex-row gap-5 ">
           <ImagePreview data={allImages} />
         </div>
-        <div className="col-span-2 xl:h-[50.5vh]">
-          <ProductDetails data={data} />
+        <div className="col-span-2 xl:h-[60.5vh]">
+          <ProductDetails product={data} toogleModal={toogleModal} />
         </div>
       </div>
       <BaseProductDetailsSlider title="Related products" data={products} />
