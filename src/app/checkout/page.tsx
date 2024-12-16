@@ -2,12 +2,19 @@
 import { useCart, useCartDispatch } from "@/context/CartContextProvider";
 import IconSvg from "@/icons/IconSvg";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+
 const page = () => {
   const productsInCart = useCart();
   const dispatchCart = useCartDispatch();
+  const [subTotal, setSubTotal] = useState(0);
+  const [total, setTotal] = useState(0);
+  let deliveryFee = 150;
+
   console.log(productsInCart, "cartsImage");
 
   const removeCartItem = (product: any) => (e: React.MouseEvent) => {
+    if (product.cart == 1) return;
     e.stopPropagation();
     dispatchCart({
       type: "remove",
@@ -23,14 +30,25 @@ const page = () => {
     });
   };
 
+  useEffect(() => {
+    let subTotal = 0;
+    productsInCart.map((p: any) => {
+      subTotal += p?.cart * p?.salePrice;
+    });
+    setSubTotal(subTotal);
+    setTotal(subTotal + deliveryFee);
+  }, [productsInCart]);
+
   return (
     <>
-      <div className="max-w-7xl flex items-start mx-auto gap-x-5 pb-10">
-        <div className="flex-[3]">
-          <div className=" bg-slate-100 px-4 py-2 space-y-2">
+      <div className="max-w-6xl flex items-start mx-auto gap-x-5 mb-40 pb-10 mt-8 shadow">
+        <div className="flex-[4]">
+          <div className=" bg-gray-100 px-4 py-2 space-y-2">
             <div className="flex justify-between">
               <h3>Shipping & Billing</h3>
-              <button className="text-primary">EDIT</button>
+              <button className="text-primary" onClick={() => alert(123)}>
+                EDIT
+              </button>
             </div>
 
             <div className="space-y-2">
@@ -46,7 +64,6 @@ const page = () => {
               </p>
             </div>
           </div>
-
           {/* Products */}
           <div className="mt-10 ">
             {productsInCart.length > 0 &&
@@ -88,11 +105,35 @@ const page = () => {
           </div>
         </div>
 
-        <div className="flex-[2] bg-slate-300 p-4 ">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi,
-            provident?
-          </p>
+        <div className="flex-[2] bg-gray-100 p-4">
+          <h3 className="font-semibold mb-3">Order Summary</h3>
+          <div className="space-y-3">
+            <div className="flex justify-between">
+              <p>Items Total ({productsInCart.length} items)</p>
+              <p>
+                <span>৳</span> <span>{subTotal}</span>
+              </p>
+            </div>
+            <div className="flex justify-between">
+              <p>Delivery Fee</p>
+              <p>
+                <span>৳</span> <span>{deliveryFee}</span>
+              </p>
+            </div>
+            <hr />
+            <div className="flex justify-between">
+              <p>Total:</p>
+              <p className="text-primary">
+                <span>৳</span> <span>{total}</span>
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-12">
+            <button className="bg-primary text-white w-full block p-3 shadow rounded-md">
+              Proceed To Pay
+            </button>
+          </div>
         </div>
       </div>
     </>
