@@ -1,12 +1,11 @@
 "use client";
 
-import { useCartDispatch } from "@/context/CartContextProvider";
 import { useDrawerContext } from "@/context/DrawerContextProvider";
-import IconSvg from "@/icons/IconSvg";
 import BaseInputIcon from "@/utils/Forms/BaseInputIcon";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import CartItemsList from "./CartItemsList";
+import EmptyCart from "./EmptyCart";
 
 type Props = {
   products: any[];
@@ -14,7 +13,6 @@ type Props = {
 
 const CartItemsInDrawer = (props: Props) => {
   const { products } = props;
-  const dispatchCart = useCartDispatch();
   const [subTotal, setSubTotal] = useState(0);
   const [promoDiscount, setPromoDiscount] = useState(0);
   const router = useRouter();
@@ -24,22 +22,6 @@ const CartItemsInDrawer = (props: Props) => {
     handleShowDrawerByContext,
     isVisibleDrawerByContext,
   } = useDrawerContext();
-
-  const removeCartItem = (product: any) => (e: React.MouseEvent) => {
-    e.stopPropagation();
-    dispatchCart({
-      type: "remove",
-      product,
-    });
-  };
-
-  const addCartItem = (product: any) => (e: React.MouseEvent) => {
-    e.stopPropagation();
-    dispatchCart({
-      type: "add",
-      product: { ...product, cart: 1 },
-    });
-  };
 
   useEffect(() => {
     let subTotal = 0;
@@ -72,58 +54,8 @@ const CartItemsInDrawer = (props: Props) => {
   return (
     <>
       <div className="product-container h-[540px] overflow-y-auto py-8 px-5 relative">
-        {(products.length > 0 &&
-          products.map((p: any) => {
-            return (
-              <div
-                className="flex gap-5 mb-8 border-b last:border-0 last:mb-0 pb-8 last:pb-0"
-                key={p?.id}
-              >
-                <span className="flex-2">
-                  <Image
-                    src={p?.coverImage}
-                    alt={p?.title}
-                    width={80}
-                    height={80}
-                  />
-                </span>
-                <div className="flex-1 text-center">
-                  <p>{p?.title}</p>
-                  <p className="text-gray-600">1 each X {p?.cart}</p>
-
-                  <div className="flex gap-x-5 items-center justify-center">
-                    <button onClick={removeCartItem(p)}>
-                      <IconSvg name="minus" color="gray" width="20" />
-                    </button>
-                    <span className="text-lg">{p?.cart}</span>
-                    <button onClick={addCartItem(p)}>
-                      <IconSvg name="plus" color="gray" width="20" />
-                    </button>
-                  </div>
-                </div>
-                <div className="flex-2 w-[80px] text-center font-bold">
-                  <span className="text-2xl">৳</span> {p?.salePrice * p?.cart}
-                </div>
-              </div>
-            );
-          })) || (
-          <div>
-            <div className="text-center w-[20vw] absolute top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%]">
-              <Image
-                className="mx-auto"
-                src="/uploads/images/cart/empty-cart.webp"
-                alt="empty-cart"
-                width={190}
-                height={190}
-              />
-              <h3 className="font-semibold mb-2 text-2xl">
-                Your Cart is empty.
-              </h3>
-              <p className="text-gray-500 text-base">
-                Please add product to your cart list
-              </p>
-            </div>
-          </div>
+        {(products.length > 0 && <CartItemsList products={products} />) || (
+          <EmptyCart />
         )}
       </div>
 
