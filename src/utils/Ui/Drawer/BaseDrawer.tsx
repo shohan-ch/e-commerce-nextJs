@@ -45,6 +45,7 @@ const BaseDrawer = (props: Props, ref: any) => {
   useImperativeHandle(ref, () => {
     return {
       handleDrawer,
+      isVisble: visible,
     };
   });
 
@@ -53,17 +54,14 @@ const BaseDrawer = (props: Props, ref: any) => {
   };
 
   const handleHide = () => {
-    if (handleHideDrawer) {
-      let setFalse = handleHideDrawer();
-      setVisible(setFalse);
-    }
+    setVisible(false);
   };
 
   return (
     <>
       <div
         // onClick={() => setVisible(false)}
-        onClick={handleHideDrawer ? handleHide : () => setVisible(false)}
+        onClick={handleHide}
         className={`${
           visible ? "opacity-100" : "opacity-0 pointer-events-none "
         } fixed h-screen transition-all duration-300 bg-gray-800 bg-opacity-60 z-50 w-full`}
@@ -84,13 +82,7 @@ const BaseDrawer = (props: Props, ref: any) => {
                   </span>
                 )}
 
-                <button
-                  onClick={
-                    handleHideDrawer ? handleHide : () => setVisible(false)
-                  }
-                >
-                  {icon.closeIcon}
-                </button>
+                <button onClick={handleHide}>{icon.closeIcon}</button>
               </span>
             </div>
             <div className="drawer-body">{children}</div>

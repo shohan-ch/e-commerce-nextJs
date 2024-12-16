@@ -31,7 +31,7 @@ const BaseModal = (props: Props, ref: any) => {
   const [isModalVisiable, setIsModalVisiable] = useState<boolean>(false);
 
   const style = {
-    width: width == "large" ? "max-w-[80vw]" : "max-w-4xl",
+    width: width == "large" ? "max-w-[75vw]" : "max-w-4xl",
     position: position == "top" ? "top-0" : "",
   };
 
