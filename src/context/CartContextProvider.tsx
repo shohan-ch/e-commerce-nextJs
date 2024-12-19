@@ -57,6 +57,26 @@ const cartReducer = (carts: any, action: any) => {
       return filterStorage;
     }
 
+    case "delete": {
+      console.log("delete");
+      const { product } = action;
+      let cartInlocalStorage: any = JSON.parse(
+        getLocalStorageItem("cart") || "[]"
+      );
+
+      let filterStorage = cartInlocalStorage.some(
+        (s: any) => s.id == product.id
+      )
+        ? cartInlocalStorage.filter((c: any) => {
+            return c.id != product.id;
+          })
+        : [...cartInlocalStorage];
+
+      filterStorage = filterStorage.filter((c: any) => c.cart != 0);
+      setLocalStorage("cart", JSON.stringify(filterStorage));
+      return filterStorage;
+    }
+
     case "removeAll": {
       const removeCarts = removeLocalStorageItem("cart");
       return [];

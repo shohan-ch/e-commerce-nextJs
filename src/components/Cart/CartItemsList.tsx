@@ -2,6 +2,7 @@
 
 import { useCartDispatch } from "@/context/CartContextProvider";
 import IconSvg from "@/icons/IconSvg";
+import BaseModal from "@/utils/Modal/BaseModal";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
@@ -16,10 +17,18 @@ const CartItemsList = (props: Props) => {
   const pathName = usePathname();
   const removeCartItem = (product: any) => (e: React.MouseEvent) => {
     if (pathName.includes("checkout") && product.cart == 1) return;
-
     e.stopPropagation();
     dispatchCart({
       type: "remove",
+      product,
+    });
+  };
+
+  const deleteCartItem = (product: any) => (e: React.MouseEvent) => {
+    e.stopPropagation();
+    alert("delete");
+    dispatchCart({
+      type: "delete",
       product,
     });
   };
@@ -42,7 +51,7 @@ const CartItemsList = (props: Props) => {
                 className="flex gap-5 mb-8 border-b last:border-0 last:mb-0 pb-8 last:pb-0"
                 key={p?.id}
               >
-                <span className="flex-2">
+                <span className="flex-2 ">
                   <Image
                     src={p?.coverImage}
                     alt={p?.title}
@@ -61,6 +70,12 @@ const CartItemsList = (props: Props) => {
                     <span className="text-lg">{p?.cart}</span>
                     <button onClick={addCartItem(p)}>
                       <IconSvg name="plus" color="gray" width="20" />
+                    </button>
+                    <button
+                      onClick={deleteCartItem(p)}
+                      className="border p-1 rounded-md shadow-sm"
+                    >
+                      <IconSvg name="delete" color="gray" width="20" />
                     </button>
                   </div>
                 </div>
