@@ -2,10 +2,10 @@
 
 import { useCartDispatch } from "@/context/CartContextProvider";
 import IconSvg from "@/icons/IconSvg";
-import BaseModal from "@/utils/Modal/BaseModal";
+import BasePopConfirm from "@/utils/Ui/PopConfirm/BasePopConfirm";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { useRef } from "react";
 
 type Props = {
   products: any[];
@@ -15,6 +15,7 @@ const CartItemsList = (props: Props) => {
   const { products } = props;
   const dispatchCart = useCartDispatch();
   const pathName = usePathname();
+  // const popConfirmRef = useRef<any>();
   const removeCartItem = (product: any) => (e: React.MouseEvent) => {
     if (pathName.includes("checkout") && product.cart == 1) return;
     e.stopPropagation();
@@ -24,9 +25,13 @@ const CartItemsList = (props: Props) => {
     });
   };
 
-  const deleteCartItem = (product: any) => (e: React.MouseEvent) => {
-    e.stopPropagation();
-    alert("delete");
+  // const handelConfirm = (e: React.MouseEvent) => {
+  //   e.stopPropagation();
+  //   popConfirmRef.current?.handleShow();
+  // };
+
+  const deleteCart = (product: any) => {
+    alert(product.id);
     dispatchCart({
       type: "delete",
       product,
@@ -45,11 +50,12 @@ const CartItemsList = (props: Props) => {
     <>
       <div className="product-container overflow-y-auto px-5 relative">
         {products.length > 0 &&
-          products.map((p: any) => {
+          products.map((p: any, index: number) => {
+            const popConfirmRef = useRef<any>();
             return (
               <div
                 className="flex gap-5 mb-8 border-b last:border-0 last:mb-0 pb-8 last:pb-0"
-                key={p?.id}
+                key={index}
               >
                 <span className="flex-2 ">
                   <Image
@@ -71,12 +77,24 @@ const CartItemsList = (props: Props) => {
                     <button onClick={addCartItem(p)}>
                       <IconSvg name="plus" color="gray" width="20" />
                     </button>
-                    <button
-                      onClick={deleteCartItem(p)}
-                      className="border p-1 rounded-md shadow-sm"
+
+                    <BasePopConfirm
+                      title="Remove from cart"
+                      description="Item(s) will be removed from order"
+                      ref={popConfirmRef}
+                      handleOk={() => deleteCart(p)}
                     >
-                      <IconSvg name="delete" color="gray" width="20" />
-                    </button>
+                      <button
+                        // onClick={handelConfirm}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          popConfirmRef.current?.handleShow();
+                        }}
+                        className="border p-1 rounded-md shadow-sm"
+                      >
+                        <IconSvg name="delete" color="gray" width="20" />
+                      </button>
+                    </BasePopConfirm>
                   </div>
                 </div>
                 <div className="flex-2 w-[80px] text-center font-bold">
