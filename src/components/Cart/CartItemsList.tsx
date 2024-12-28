@@ -5,7 +5,7 @@ import IconSvg from "@/icons/IconSvg";
 import BasePopConfirm from "@/utils/Ui/PopConfirm/BasePopConfirm";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import React, { useRef } from "react";
+import React, { createRef, useRef } from "react";
 
 type Props = {
   products: any[];
@@ -15,7 +15,8 @@ const CartItemsList = (props: Props) => {
   const { products } = props;
   const dispatchCart = useCartDispatch();
   const pathName = usePathname();
-  // const popConfirmRef = useRef<any>();
+  const popConfirmRef = useRef<any>();
+  // const popConfirmRef = createRef<any>();
   const removeCartItem = (product: any) => (e: React.MouseEvent) => {
     if (pathName.includes("checkout") && product.cart == 1) return;
     e.stopPropagation();
@@ -25,10 +26,10 @@ const CartItemsList = (props: Props) => {
     });
   };
 
-  // const handelConfirm = (e: React.MouseEvent) => {
-  //   e.stopPropagation();
-  //   popConfirmRef.current?.handleShow();
-  // };
+  const handelConfirm = (ref: any) => (e: React.MouseEvent) => {
+    e.stopPropagation();
+    ref.current?.handleShow();
+  };
 
   const deleteCart = (product: any) => {
     alert(product.id);
@@ -51,7 +52,7 @@ const CartItemsList = (props: Props) => {
       <div className="product-container overflow-y-auto px-5 relative">
         {products.length > 0 &&
           products.map((p: any, index: number) => {
-            const popConfirmRef = useRef<any>();
+            const popConfirmRef = createRef<any>();
             return (
               <div
                 className="flex gap-5 mb-8 border-b last:border-0 last:mb-0 pb-8 last:pb-0"
@@ -85,11 +86,7 @@ const CartItemsList = (props: Props) => {
                       handleOk={() => deleteCart(p)}
                     >
                       <button
-                        // onClick={handelConfirm}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          popConfirmRef.current?.handleShow();
-                        }}
+                        onClick={handelConfirm(popConfirmRef)}
                         className="border p-1 rounded-md shadow-sm"
                       >
                         <IconSvg name="delete" color="gray" width="20" />

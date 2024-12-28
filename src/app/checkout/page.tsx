@@ -9,7 +9,6 @@ const page = () => {
   const [total, setTotal] = useState(0);
   let deliveryFee = 150;
 
-  console.log(productsInCart, "cartsImage");
   useEffect(() => {
     let subTotal = 0;
     productsInCart.map((p: any) => {
