@@ -3,7 +3,7 @@ import CartItemsList from "@/components/Cart/CartItemsList";
 import EmptyCart from "@/components/Cart/EmptyCart";
 import EmptyCheckout from "@/components/Checkout/EmptyCheckout";
 import OrderSummary from "@/components/Checkout/OrderSummary";
-import ShippingAddresses from "@/components/Checkout/ShippingAddresses/ShippingAddresses";
+import ShippingAddresses from "@/components/ShippingAddresses/ShippingAddresses";
 import { useCart } from "@/context/CartContextProvider";
 import { useEffect, useState } from "react";
 
