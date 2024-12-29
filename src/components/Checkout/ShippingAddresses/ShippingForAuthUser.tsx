@@ -2,7 +2,7 @@ import React from "react";
 
 type Props = {};
 
-const ShippingAddresses = (props: Props) => {
+const ShippingForLoggedUser = (props: Props) => {
   return (
     <div className=" bg-gray-100 px-4 py-2 space-y-2 mb-10">
       <div className="flex justify-between">
@@ -27,4 +27,4 @@ const ShippingAddresses = (props: Props) => {
   );
 };
 
-export default ShippingAddresses;
+export default ShippingForLoggedUser;
