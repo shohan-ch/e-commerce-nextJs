@@ -5,7 +5,7 @@ import IconSvg from "@/icons/IconSvg";
 import BasePopConfirm from "@/utils/Ui/PopConfirm/BasePopConfirm";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import React, { createRef, useRef } from "react";
+import React, { createRef } from "react";
 
 type Props = {
   products: any[];
@@ -15,8 +15,7 @@ const CartItemsList = (props: Props) => {
   const { products } = props;
   const dispatchCart = useCartDispatch();
   const pathName = usePathname();
-  const popConfirmRef = useRef<any>();
-  // const popConfirmRef = createRef<any>();
+
   const removeCartItem = (product: any) => (e: React.MouseEvent) => {
     if (pathName.includes("checkout") && product.cart == 1) return;
     e.stopPropagation();
@@ -32,7 +31,6 @@ const CartItemsList = (props: Props) => {
   };
 
   const deleteCart = (product: any) => {
-    alert(product.id);
     dispatchCart({
       type: "delete",
       product,
