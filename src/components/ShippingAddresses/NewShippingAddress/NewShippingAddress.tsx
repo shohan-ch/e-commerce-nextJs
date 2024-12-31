@@ -1,4 +1,5 @@
 import BaseInput from "@/utils/Forms/BaseInput";
+import BaseSelect from "@/utils/Forms/BaseSelect";
 import React, { useState } from "react";
 type Props = {};
 
@@ -6,7 +7,9 @@ const NewShippingAddress = (props: Props) => {
   const [form, setForm] = useState<any>({});
 
   const handleFormChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
@@ -33,12 +36,15 @@ const NewShippingAddress = (props: Props) => {
         </div>
 
         <div className="flex-[5]">
-          <BaseInput
+          <BaseSelect
             name="region"
-            handleChange={handleFormChange}
             label="Region"
-            placeHolder="Enter your first and last name"
-            style="focus:border-primary"
+            handelChange={handleFormChange}
+            disable={true}
+            options={[
+              { name: "first", value: "1" },
+              { name: "second", value: "2" },
+            ]}
           />
         </div>
       </div>
