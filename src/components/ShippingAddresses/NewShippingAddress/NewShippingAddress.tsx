@@ -1,11 +1,15 @@
 import BaseInput from "@/utils/Forms/BaseInput";
 import BaseSelect from "@/utils/Forms/BaseSelect";
-import { Fahkwang } from "next/font/google";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import addresses from "../../../data/addresses.json";
 type Props = {};
 
 const NewShippingAddress = (props: Props) => {
   const [form, setForm] = useState<any>({});
+  const [city, setCity] = useState<any[]>(addresses.city);
+  const [cachedCity, setCachedCity] = useState<any[]>(addresses.city);
+  const [area, setArea] = useState<any[]>(addresses.area);
+  const [cachedArea, setCachedArea] = useState<any[]>(addresses.area);
 
   const handleFormChange = (
     e: React.ChangeEvent<
@@ -16,11 +20,30 @@ const NewShippingAddress = (props: Props) => {
     setForm({ ...form, [name]: value });
   };
 
+  useEffect(() => {
+    if (form.region) {
+      let filterCity = cachedCity.filter(
+        (c: any) => c.regionId == parseInt(form.region)
+      );
+      setCity(filterCity);
+      setCachedCity(addresses.city);
+    }
+
+    if (form.city) {
+      let filterArea = cachedArea.filter(
+        (a: any) => a.cityId == parseInt(form.city)
+      );
+      setArea(filterArea);
+      setCachedArea(addresses.area);
+    }
+  }, [form]);
+
   const containerStyle = {
     display: "flex",
     columnGap: "20px",
     margin: "0px",
   };
+  console.log(form, "formData");
 
   return (
     <>
@@ -41,10 +64,7 @@ const NewShippingAddress = (props: Props) => {
             label="Region"
             handelChange={handleFormChange}
             isAllowSearch
-            options={[
-              { name: "first", value: "1" },
-              { name: "second", value: "2" },
-            ]}
+            options={addresses.region}
           />
         </div>
       </div>
@@ -65,10 +85,8 @@ const NewShippingAddress = (props: Props) => {
             label="City"
             handelChange={handleFormChange}
             isAllowSearch
-            options={[
-              { name: "first", value: "1" },
-              { name: "second", value: "2" },
-            ]}
+            options={city}
+            disable={!form.region}
           />
         </div>
       </div>
@@ -89,10 +107,8 @@ const NewShippingAddress = (props: Props) => {
             label="Area"
             handelChange={handleFormChange}
             isAllowSearch
-            options={[
-              { name: "first", value: "1" },
-              { name: "second", value: "2" },
-            ]}
+            options={area}
+            disable={!form.city}
           />
         </div>
       </div>

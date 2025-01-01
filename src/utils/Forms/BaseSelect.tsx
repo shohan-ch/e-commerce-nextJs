@@ -42,7 +42,8 @@ const icon = {
 
 interface Option {
   name: string;
-  value: string | number;
+  value?: string | number;
+  id?: string | number;
 }
 
 type Props = {
@@ -56,23 +57,28 @@ type Props = {
 
 const BaseSelect = (props: Props) => {
   const { options, name, handelChange, label, disable, isAllowSearch } = props;
-  const [filterOptions, setFilterOptions] = useState<any>(options);
+  const [filterOptions, setFilterOptions] = useState<any>([]);
   const [isVisibleOptions, setIsVisibleOptions] = useState<boolean>(false);
   const [selectedValue, setSelectedValue] = useState<any>("");
   const [activeOptionIndex, setActiveOptionIndex] = useState<number>(-1);
   const containerRef = useRef<HTMLDivElement>(null);
   const optionsRef = useRef<any>(null);
 
+  useEffect(() => {
+    setFilterOptions(options);
+  }, [options]);
+
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     let val = e.target.value;
     setSelectedValue(val);
     let selectedOptions = filterOptions.filter((o: any) =>
-      o.name.includes(val)
+      (o.name as string).toLowerCase().includes(val.toLowerCase())
     );
     setFilterOptions(selectedOptions);
     if (val.length == 0) {
       setIsVisibleOptions(true);
       setFilterOptions(options);
+      handelChange && handelChange({ target: { name: name, value: "" } });
     }
     console.log(filterOptions.length, "filterLength");
   };
@@ -190,7 +196,7 @@ const BaseSelect = (props: Props) => {
                 
                 w-full text-left px-2 py-1  focus:bg-primary focus:text-white hover:bg-gray-200 hover:text-black transition-all duration-100`}
                     key={index}
-                    value={option.value}
+                    value={option.value || option.id}
                   >
                     {" "}
                     {option.name}
