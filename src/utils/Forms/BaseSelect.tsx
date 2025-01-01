@@ -51,10 +51,11 @@ type Props = {
   name: string;
   handelChange?: (e: any) => void;
   disable?: boolean;
+  isAllowSearch?: boolean;
 };
 
 const BaseSelect = (props: Props) => {
-  const { options, name, handelChange, label, disable } = props;
+  const { options, name, handelChange, label, disable, isAllowSearch } = props;
   const [filterOptions, setFilterOptions] = useState<any>(options);
   const [isVisibleOptions, setIsVisibleOptions] = useState<boolean>(false);
   const [selectedValue, setSelectedValue] = useState<any>("");
@@ -147,82 +148,86 @@ const BaseSelect = (props: Props) => {
       >
         {label}
       </label>
-      <div>
-        <input
-          type="text"
-          placeholder="write text"
-          className={`${
-            disable ? "bg-[#04040417] " : ""
-          } absolute bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5`}
-          value={selectedValue}
-          onChange={handleSearch}
-          onClick={handleShowOptions}
-          onKeyDown={handleKeyDown}
-          onMouseLeave={() => setActiveOptionIndex(-1)}
-          disabled={disable}
-        />
 
-        <span className="cursor-pointer absolute right-1.5 top-10 p-1 ">
-          {isVisibleOptions ? icon.search : icon.arrowDown}
-        </span>
+      {(isAllowSearch && (
+        <div>
+          <input
+            type="text"
+            placeholder="write text"
+            className={`${
+              disable ? "bg-[#e7e7e7]" : ""
+            } absolute bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5`}
+            value={selectedValue}
+            onChange={handleSearch}
+            onClick={handleShowOptions}
+            onKeyDown={handleKeyDown}
+            onMouseLeave={() => setActiveOptionIndex(-1)}
+            disabled={disable}
+          />
 
-        {isVisibleOptions && (
-          <div
-            ref={optionsRef}
-            className="absolute w-full top-[75px] bg-white shadow-lg  border border-t-0 rounded max-h-[250px]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {(filterOptions.length > 0 &&
-              filterOptions.map((option: any, index: number) => (
-                <button
-                  name={name}
-                  onClick={(e: any) => {
-                    handelChange && handelChange(e);
-                    setSelectedValue(option.name);
-                    setIsVisibleOptions(false);
-                  }}
-                  className={`
+          <span className="cursor-pointer absolute right-1.5 top-10 p-1 ">
+            {isVisibleOptions ? icon.search : icon.arrowDown}
+          </span>
+
+          {isVisibleOptions && (
+            <div
+              ref={optionsRef}
+              className="absolute w-full top-[75px] bg-white shadow-lg border rounded-md max-h-[250px]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {(filterOptions.length > 0 &&
+                filterOptions.map((option: any, index: number) => (
+                  <button
+                    name={name}
+                    onClick={(e: any) => {
+                      handelChange && handelChange(e);
+                      setSelectedValue(option.name);
+                      setIsVisibleOptions(false);
+                    }}
+                    className={`
                 ${index === activeOptionIndex ? "bg-gray-200 text-black" : ""}
                 ${selectedValue === option.name ? "bg-primary text-white" : ""}
                 
                 w-full text-left px-2 py-1  focus:bg-primary focus:text-white hover:bg-gray-200 hover:text-black transition-all duration-100`}
-                  key={index}
-                  value={option.value}
-                >
-                  {" "}
-                  {option.name}
-                </button>
-              ))) || (
-              <div className="h-[60px] p-10 mx-auto flex justify-center items-center">
-                <div>
-                  <span>{icon.empty}</span>
-                  <p className="text-gray-400 text-sm pt-2">No data found</p>
+                    key={index}
+                    value={option.value}
+                  >
+                    {" "}
+                    {option.name}
+                  </button>
+                ))) || (
+                <div className="h-[60px] p-10 mx-auto flex justify-center items-center">
+                  <div>
+                    <span>{icon.empty}</span>
+                    <p className="text-gray-400 text-sm pt-2">No data found</p>
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* <select
-        id={label}
-        name={name}
-        onChange={handelChange}
-        className=" bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg outline-none
-         focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        onFocus={() => {
-          setIsVisibleOptions(true);
-          inputRef?.current?.focus();
-        }}
-      >
-        <option value="">Select {label.toLowerCase()}</option>
-        {options.map((option: any, index: number) => (
-          <option key={index} value={option.value}>
-            {" "}
-            {option.name}
-          </option>
-        ))}
-      </select> */}
+              )}
+            </div>
+          )}
+        </div>
+      )) || (
+        <div>
+          <select
+            id={label}
+            name={name}
+            onChange={handelChange}
+            className={` ${
+              disable ? "bg-[#e7e7e7]" : ""
+            } bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg outline-none
+         focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5`}
+            disabled={disable}
+          >
+            <option value="">Select {label.toLowerCase()}</option>
+            {options.map((option: any, index: number) => (
+              <option key={index} value={option.value}>
+                {" "}
+                {option.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import BaseInput from "@/utils/Forms/BaseInput";
 import BaseSelect from "@/utils/Forms/BaseSelect";
+import { Fahkwang } from "next/font/google";
 import React, { useState } from "react";
 type Props = {};
 
@@ -40,7 +41,8 @@ const NewShippingAddress = (props: Props) => {
             name="region"
             label="Region"
             handelChange={handleFormChange}
-            disable={true}
+            // disable={true}
+            isAllowSearch
             options={[
               { name: "first", value: "1" },
               { name: "second", value: "2" },
