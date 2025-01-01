@@ -153,7 +153,7 @@ const BaseSelect = (props: Props) => {
         <div>
           <input
             type="text"
-            placeholder="write text"
+            placeholder={`Select ${label}`}
             className={`${
               disable ? "bg-[#e7e7e7]" : ""
             } absolute bg-gray-50 border mb-4 border-gray-300 text-gray-900 text-sm rounded-lg outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5`}

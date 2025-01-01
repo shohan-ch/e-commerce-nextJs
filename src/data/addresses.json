@@ -1,0 +1,96 @@
+[
+{
+    "region":[
+        {
+            "id":1,
+            "name":"Dhaka"
+        },
+        {
+            "id":2,
+            "name":"Sylhet"
+        },
+        {
+            "id":3,
+            "name":"Chattrogram"
+        }
+    ],
+    "city": [
+        {
+            "id":1,
+            "name":"Dhaka North",
+            "regionId":1
+        },
+        {
+            "id":2,
+            "name":"Dhaka South",
+            "regionId":1
+        },
+        {
+            "id":3,
+            "name":"Gazipur",
+            "regionId":1
+        },
+        {
+            "id":4,
+            "name":"Habiganj",
+            "regionId":2
+        },
+        {
+            "id":5,
+            "name":"Moulibazar",
+            "regionId":2
+        },
+        {
+            "id":6,
+            "name":"Sylhet Sadar",
+            "regionId":2
+        }
+ 
+],
+
+"area":[
+    {
+        "id":1,
+        "name":"DhanMonddi",
+        "cityId":1
+    },
+    {
+        "id":2,
+        "name":"Banani",
+        "cityId":1
+    },
+    {
+        "id":3,
+        "name":"Gulsan",
+        "cityId":1
+    },
+    {
+        "id":4,
+        "name":"Uttara",
+        "cityId":2
+    },
+    {
+        "id":5,
+        "name":"Saydabad",
+        "cityId":2
+    },
+
+    {
+        "id":6,
+        "name":"Bahubal",
+        "cityId":4
+    },
+    {
+        "id":7,
+        "name":"Mirpur",
+        "cityId":4
+    },
+    {
+        "id":6,
+        "name":"Notun Bridge",
+        "cityId":4
+    }
+]
+
+}
+]
