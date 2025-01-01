@@ -172,7 +172,7 @@ const BaseSelect = (props: Props) => {
           {isVisibleOptions && (
             <div
               ref={optionsRef}
-              className="absolute w-full top-[75px] bg-white shadow-lg border rounded-md max-h-[250px]"
+              className="z-50 absolute w-full top-[75px] bg-white shadow-lg border rounded-md max-h-[250px]"
               onClick={(e) => e.stopPropagation()}
             >
               {(filterOptions.length > 0 &&

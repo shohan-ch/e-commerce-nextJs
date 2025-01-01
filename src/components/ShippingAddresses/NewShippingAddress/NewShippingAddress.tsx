@@ -15,7 +15,6 @@ const NewShippingAddress = (props: Props) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
-  console.log(form, "data");
 
   const containerStyle = {
     display: "flex",
@@ -41,7 +40,6 @@ const NewShippingAddress = (props: Props) => {
             name="region"
             label="Region"
             handelChange={handleFormChange}
-            // disable={true}
             isAllowSearch
             options={[
               { name: "first", value: "1" },
@@ -62,12 +60,15 @@ const NewShippingAddress = (props: Props) => {
         </div>
 
         <div className="flex-[5]">
-          <BaseInput
-            name="Region"
-            handleChange={handleFormChange}
+          <BaseSelect
+            name="city"
             label="City"
-            placeHolder="Enter your first and last name"
-            style="focus:border-primary"
+            handelChange={handleFormChange}
+            isAllowSearch
+            options={[
+              { name: "first", value: "1" },
+              { name: "second", value: "2" },
+            ]}
           />
         </div>
       </div>
@@ -83,12 +84,15 @@ const NewShippingAddress = (props: Props) => {
         </div>
 
         <div className="flex-[5]">
-          <BaseInput
-            name="Region"
-            handleChange={handleFormChange}
+          <BaseSelect
+            name="area"
             label="Area"
-            placeHolder="Enter your first and last name"
-            style="focus:border-primary"
+            handelChange={handleFormChange}
+            isAllowSearch
+            options={[
+              { name: "first", value: "1" },
+              { name: "second", value: "2" },
+            ]}
           />
         </div>
       </div>
