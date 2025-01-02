@@ -2,6 +2,7 @@ import BaseInput from "@/utils/Forms/BaseInput";
 import BaseSelect from "@/utils/Forms/BaseSelect";
 import React, { useEffect, useState } from "react";
 import addresses from "../../../data/addresses.json";
+import BaseLabelRadio from "@/utils/Forms/BaseLabelRadio";
 type Props = {};
 
 const NewShippingAddress = (props: Props) => {
@@ -21,17 +22,16 @@ const NewShippingAddress = (props: Props) => {
   };
 
   useEffect(() => {
-    if (form.region) {
+    if (form.regionId) {
       let filterCity = cachedCity.filter(
-        (c: any) => c.regionId == parseInt(form.region)
+        (c: any) => c.regionId == parseInt(form.regionId)
       );
       setCity(filterCity);
       setCachedCity(addresses.city);
     }
-
-    if (form.city) {
+    if (form.cityId) {
       let filterArea = cachedArea.filter(
-        (a: any) => a.cityId == parseInt(form.city)
+        (a: any) => a.cityId == parseInt(form.cityId)
       );
       setArea(filterArea);
       setCachedArea(addresses.area);
@@ -60,7 +60,7 @@ const NewShippingAddress = (props: Props) => {
 
         <div className="flex-[5]">
           <BaseSelect
-            name="region"
+            name="regionId"
             label="Region"
             handelChange={handleFormChange}
             isAllowSearch
@@ -81,12 +81,12 @@ const NewShippingAddress = (props: Props) => {
 
         <div className="flex-[5]">
           <BaseSelect
-            name="city"
+            name="cityId"
             label="City"
             handelChange={handleFormChange}
             isAllowSearch
             options={city}
-            disable={!form.region}
+            disable={!form.regionId}
           />
         </div>
       </div>
@@ -103,12 +103,12 @@ const NewShippingAddress = (props: Props) => {
 
         <div className="flex-[5]">
           <BaseSelect
-            name="area"
+            name="areaId"
             label="Area"
             handelChange={handleFormChange}
             isAllowSearch
             options={area}
-            disable={!form.city}
+            disable={!form.cityId}
           />
         </div>
       </div>
@@ -132,6 +132,32 @@ const NewShippingAddress = (props: Props) => {
             style="focus:border-primary"
           />
         </div>
+      </div>
+
+      <div className="flex justify-center">
+        <div className="flex gap-x-4">
+          <BaseLabelRadio
+            name="addressLabel"
+            label="Home"
+            categoryName="ss"
+            handleChange={handleFormChange}
+          />
+          <BaseLabelRadio
+            name="addressLabel2"
+            label="Office"
+            categoryName="ss"
+            handleChange={handleFormChange}
+          />
+        </div>
+      </div>
+
+      <div className="button-container flex justify-end">
+        <button className="bg-gray-200 text-gray-600 p-2 text-center w-[90px]">
+          Cancel
+        </button>
+        <button className="bg-primary p-2 text-white shadow text-center w-[90px] ml-4">
+          Remove
+        </button>
       </div>
     </>
   );
