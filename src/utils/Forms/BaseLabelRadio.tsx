@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 type Props = {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -11,7 +11,6 @@ type Props = {
 
 const BaseLabelRadio = (props: Props) => {
   const { name, value, label, icon, style, handleChange } = props;
-  console.log(icon, "icons");
 
   return (
     <div className="relative">
