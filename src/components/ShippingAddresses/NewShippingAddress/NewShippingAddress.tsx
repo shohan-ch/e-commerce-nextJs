@@ -1,10 +1,9 @@
+import IconSvgFunction from "@/icons/IconSvgFunction";
 import BaseInput from "@/utils/Forms/BaseInput";
+import BaseLabelRadio from "@/utils/Forms/BaseLabelRadio";
 import BaseSelect from "@/utils/Forms/BaseSelect";
 import React, { useEffect, useState } from "react";
 import addresses from "../../../data/addresses.json";
-import BaseLabelRadio from "@/utils/Forms/BaseLabelRadio";
-import IconSvg from "@/icons/IconSvg";
-import IconSvgFunction from "@/icons/IconSvgFunction";
 type Props = {};
 
 const NewShippingAddress = (props: Props) => {
@@ -45,7 +44,6 @@ const NewShippingAddress = (props: Props) => {
     columnGap: "20px",
     margin: "0px",
   };
-  console.log(form, "formData");
 
   return (
     <>
@@ -95,7 +93,7 @@ const NewShippingAddress = (props: Props) => {
       <div style={containerStyle}>
         <div className="flex-[5]">
           <BaseInput
-            name="fullName"
+            name="building"
             handleChange={handleFormChange}
             label="Building / House No / Floor / Street"
             placeHolder="Enter your first and last name"
@@ -117,7 +115,7 @@ const NewShippingAddress = (props: Props) => {
       <div style={containerStyle}>
         <div className="flex-[5]">
           <BaseInput
-            name="fullName"
+            name="colony"
             handleChange={handleFormChange}
             label="Colony / Suburb / Locality / Landmark"
             placeHolder="Please enter"
@@ -136,7 +134,10 @@ const NewShippingAddress = (props: Props) => {
         </div>
       </div>
 
-      <div className="flex justify-center">
+      <h3 className="text-center mb-0 text-gray-800">
+        Select a label for effective delivery
+      </h3>
+      <div className="flex justify-center !mt-0">
         <div className="flex gap-x-4">
           <BaseLabelRadio
             name="addressType"
@@ -159,8 +160,11 @@ const NewShippingAddress = (props: Props) => {
         <button className="bg-gray-200 text-gray-600 p-2 text-center w-[90px]">
           Cancel
         </button>
-        <button className="bg-primary p-2 text-white shadow text-center w-[90px] ml-4">
-          Remove
+        <button
+          className="bg-primary p-2 text-white shadow text-center w-[90px] ml-4"
+          onClick={() => console.log(form, "formData")}
+        >
+          Save
         </button>
       </div>
     </>
