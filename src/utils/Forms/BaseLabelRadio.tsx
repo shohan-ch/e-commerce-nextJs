@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 type Props = {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

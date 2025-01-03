@@ -28,7 +28,7 @@ const icon = {
 };
 const BaseModal = (props: Props, ref: any) => {
   const { title, children, width, position } = props;
-  const [isModalVisiable, setIsModalVisiable] = useState<boolean>(true);
+  const [isModalVisiable, setIsModalVisiable] = useState<boolean>(false);
 
   const style = {
     width: width == "large" ? "max-w-[75vw]" : "max-w-4xl",

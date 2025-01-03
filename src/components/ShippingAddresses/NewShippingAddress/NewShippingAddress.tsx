@@ -4,7 +4,7 @@ import BaseLabelRadio from "@/utils/Forms/BaseLabelRadio";
 import BaseSelect from "@/utils/Forms/BaseSelect";
 import React, { useEffect, useState } from "react";
 import addresses from "../../../data/addresses.json";
-type Props = {};
+type Props = { modalRef: any };
 
 const NewShippingAddress = (props: Props) => {
   const [form, setForm] = useState<any>({});
@@ -12,6 +12,7 @@ const NewShippingAddress = (props: Props) => {
   const [cachedCity, setCachedCity] = useState<any[]>(addresses.city);
   const [area, setArea] = useState<any[]>(addresses.area);
   const [cachedArea, setCachedArea] = useState<any[]>(addresses.area);
+  const { modalRef } = props;
 
   const handleFormChange = (
     e: React.ChangeEvent<
@@ -157,7 +158,10 @@ const NewShippingAddress = (props: Props) => {
       </div>
 
       <div className="button-container flex justify-end">
-        <button className="bg-gray-200 text-gray-600 p-2 text-center w-[90px]">
+        <button
+          className="bg-gray-200 text-gray-600 p-2 text-center w-[90px]"
+          onClick={() => modalRef?.current?.toggleModal()}
+        >
           Cancel
         </button>
         <button
